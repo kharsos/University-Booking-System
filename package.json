@@ -1,0 +1,33 @@
+{
+  "name": "university-booking-system",
+  "version": "1.0.0",
+  "description": "Streamline your university's hall booking process with the University Hall Booking System, a web application designed for ease of use. Students, staff, and faculty can search, book, and manage reservations for classrooms, meeting rooms, event spaces, and more – all through a user-friendly interface.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmehdifaida/University-Booking-System.git"
+  },
+  "keywords": [
+    "Cadi",
+    "ayyad",
+    "faculty",
+    "of",
+    "medicine",
+    "and",
+    "pharmacy",
+    "booking"
+  ],
+  "author": "IT service FMPM Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elmehdifaida/University-Booking-System/issues"
+  },
+  "homepage": "https://github.com/elmehdifaida/University-Booking-System#readme"
+}
