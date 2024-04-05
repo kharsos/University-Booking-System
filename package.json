@@ -29,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/elmehdifaida/University-Booking-System/issues"
   },
-  "homepage": "https://github.com/elmehdifaida/University-Booking-System#readme"
+  "homepage": "https://github.com/elmehdifaida/University-Booking-System#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.19.2",
+    "sequelize": "^6.37.2"
+  }
 }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="../public/css/signup.css" rel="stylesheet" >
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+  
+    <!-- Registration 5 - Bootstrap Brain Component -->
+    <section class="vh-100 gradient-custom">
+        <div class="container col-md-6 col-sm-8 col-lg-6 col-xl-5 h-100">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="">
+              <div class="card shadow-2-strong card-registration row " style="border-radius: 15px;">
+                <div class="logo">
+                  <a href="#" class="text-white d-flex align-items-center">
+                    <img class="img-fluid" src="../public/images/logo.png" alt="">
+                  </a>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                  <h3 class="">Create your Account</h3>
+                  <p>Start your website in seconds. Already have an account? <a href="">Login here</a>.</p>
+                  <form class="row g-3 needs-validation " id="form" novalidate >
+      
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <label class="form-label" for="emailAddress">Email</label>
+                        <input type="email" id="emailAddress" class="form-control form-control-md" placeholder="example@uca.ac.ma" required/>
+                        <i class="validateEmail" id="validateEmail">email must end with '@uca.ac.ma'!</i>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                        <label class="form-label" for="fullname">Full name</label>
+                        <input type="text" id="fullname" class="form-control form-control-md"placeholder="Full name" required/>
+                        
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label select-label">Type</label>
+                          <select class="select form-select" id="select">
+                            <option selected disabled i>Choose Type</option>
+                            <option value="student">student</option>
+                            <option value="staff">staff </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row hidden" id="student">
+                        <div class="col-md-6 mb-4 ">
+                          <label class="form-label " for="CNE">CNE</label>
+                          <input type="number" id="CNE" class="form-control form-control-md " placeholder="CNE" />
+                          <div class="form-outline">
+                         </div>
+        
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                          <label class="form-label" for="EducationLevel">Education Level</label>
+                          <input type="text" id="EducationLevel" class="form-control form-control-md "placeholder="Education Level" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row hidden" id="staff">
+                        <div class="col-md-6 mb-4 ">
+                          <label class="form-label " for="PPT">PPT Number</label>
+                          <input type="number" id="PPT" class="form-control form-control-md " placeholder="PPT Number" />
+                          <div class="form-outline">
+                         </div>
+        
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                          <label class="form-label" for="Service">Service</label>
+                          <input type="text" id="Service" class="form-control form-control-md "placeholder="Service" />
+                          </div>
+                        </div>
+                      </div>
+      
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+      
+                        <div class="form-outline">
+                            <label class="form-label" for="password">Password</label>
+                          <input type="password" id="password" class="form-control form-control-md" placeholder="••••••••" />
+                        <i class="validatePassword" id="validatePassword">Password is not strong</i>
+                        </div>
+      
+                      </div>
+                      <div class="col-md-6 mb-4 pb-2">
+      
+                        <div class="form-outline">
+                            <label class="form-label" for="confirmPassword">Confirm password</label>
+                            <input type="password" id="confirmPassword" class="form-control form-control-md" placeholder="••••••••"/>
+                            <i class="passwordMatching" id="passwordMatching">Passwords do not match!</i>
+                        </div>
+      
+                      </div>
+                      <div class="pt-2">
+                        <input class="btn btn-primary btn-lg" type="submit" id="btn" value="create an account" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <img id="avatar" class="col-md-6 d-none d-md-block" src="../public/images/vector_3D.png"> 
+      </section>
+      <script src="../public/js/type.js"></script>
+</body>
+</html>
