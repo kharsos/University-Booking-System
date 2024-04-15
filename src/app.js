@@ -4,9 +4,6 @@ const path = require('path')
 const app = express()
 const bodyParser =require('body-parser')
 
-sequelize.sync()
-.then(()=>console.log('db is ready'))
-
 app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.json())
@@ -17,11 +14,8 @@ app.set('view engine','ejs')
 
 app.use(express.static('public'))
 
-app.use(express.urlencoded({ extended: true }));
-
 app.use('/',require('./routes/auth'))
 
-app.get('/signup', function(req, res) {
-    res.render('signup',{});
-});
+
+
 module.exports=app;

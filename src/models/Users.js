@@ -1,26 +1,31 @@
-const {Model,DataTypes}=require('sequelize');
-const sequelize=require('../../config/Database');
-class Users extends Model{}
-Users.init({
-    username:{
-        type:DataTypes.STRING
-    },
+const {Model , DataTypes} =require('sequelize')
+const sequelize = require('../../config/Database')
+
+class user extends Model{}
+
+user.init({
     email:{
         type:DataTypes.STRING
     },
-    password:{
+    username:{
         type:DataTypes.STRING
+    },
+    firstname:{
+        type:DataTypes.STRING
+    },
+    lastname:{
+        type:DataTypes.STRING
+    },
+    national_number:{
+        type:DataTypes.INTEGER
     },
     role:{
         type:DataTypes.STRING
     },
-    first_name:{
-        type:DataTypes.STRING
+    field:{
+        type:DataTypes.JSON
     },
-    last_name:{
-        type:DataTypes.STRING
-    },
-    national_number:{
+    password:{
         type:DataTypes.STRING
     },
     is_confirmed:{
@@ -28,8 +33,7 @@ Users.init({
     }
 },{
     sequelize,
-    modelName:'Users'
-}
-)
+    modelName:'user'
+})
 
-module.exports=Users;
+module.exports=user

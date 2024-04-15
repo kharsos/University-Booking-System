@@ -1,0 +1,90 @@
+body{
+  background-color: #000E1A;
+  flex-direction: row;
+}
+section{
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  background-color: #002440;
+  color: white;
+  font-size: bold;
+}
+.select {
+  margin-bottom: 20px;
+  color: white;
+  font-size: bold;
+}
+#Username,#emailAddress,#password,#confirmPassword,#EducationLevel,#CNE,#PPT,#Service,#firstname,#lastname,.select {
+  background-color: #213b4f;
+  color: white;
+}
+#password::placeholder {
+  color: lightgray;
+}
+#emailAddress::placeholder {
+  color: lightgray;
+}
+#Username::placeholder {
+    color: lightgray;
+  }
+#confirmPassword::placeholder {
+    color: lightgray;
+  }
+#EducationLevel::placeholder {
+    color: lightgray;
+  }
+#CNE::placeholder {
+    color: lightgray;
+  }
+#PPT::placeholder {
+    color: lightgray;
+  }
+#Service::placeholder {
+    color: lightgray;
+  }
+#firstname::placeholder {
+    color: lightgray;
+  }
+#lastname::placeholder {
+    color: lightgray;
+  }
+label{
+  font-weight: bold;
+  font-size: large;
+  color: lightgray;
+  margin-right: 20px;
+}
+.logo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+.text-white {
+  color: white;
+}
+.img-fluid{
+  width: 25%;
+}
+.hidden{
+  display: none;
+}
+.image{
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#avatar{
+  width:100%;
+}
+.validate{
+  display: none;
+}
+i{
+  color: rgb(255, 63, 63);
+}
