@@ -1,0 +1,75 @@
+body{
+    background-color: #000E1A;
+    flex-direction: row;
+  }
+  section{
+    display: flex;
+    align-items: center;
+  }
+  
+  .card {
+    background-color: #002440;
+    color: white;
+    font-size: bold;
+  }
+  .select {
+    margin-bottom: 20px;
+    color: white;
+    font-size: bold;
+  }
+  #fullname,#emailAddress,#password,#ConfirmPassword,#EducationLevel,#CNE,#PPT,#Service,.select {
+    background-color: #213b4f;
+    color: white;
+  }
+  #password::placeholder {
+    color: lightgray;
+  }
+  #emailAddress::placeholder {
+    color: lightgray;
+  }
+  #fullname::placeholder {
+      color: lightgray;
+    }
+  #ConfirmPassword::placeholder {
+      color: lightgray;
+    }
+  #EducationLevel::placeholder {
+      color: lightgray;
+    }
+  #CNE::placeholder {
+      color: lightgray;
+    }
+  #PPT::placeholder {
+      color: lightgray;
+    }
+  #Service::placeholder {
+      color: lightgray;
+    }
+  label{
+    font-weight: bold;
+    font-size: large;
+    color: lightgray;
+    margin-right: 20px;
+  }
+  .logo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  
+  /* Custom CSS to set text color to white */
+  .text-white {
+    color: white;
+  }
+  .img-fluid{
+    width: 25%;
+  }
+  .hidden{
+    display: none;
+  }
+  #avatar{
+    width: 40%;
+  }
+  
