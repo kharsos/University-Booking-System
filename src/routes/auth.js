@@ -40,8 +40,8 @@ router.get('/signup', function(req, res) {
     res.render('signup',{});
 });
 
-router.get('/dashboard', function(req, res) {
-    res.render('dashboard',{});
+router.get('/admin', function(req, res) {
+    res.render('admin',{});
 });
 router.get('/',(req,res)=>{
     res.render('index',{})
