@@ -1,8 +1,8 @@
 const {Model,DataTypes}=require('sequelize');
-const sequelize=require('../University-Booking-System-main/config/env/Database');
+const sequelize=require('../../config/Database');
 class Users extends Model{}
 Users.init({
-    name:{
+    username:{
         type:DataTypes.STRING
     },
     email:{
@@ -11,9 +11,21 @@ Users.init({
     password:{
         type:DataTypes.STRING
     },
-    userType:{
+    role:{
         type:DataTypes.STRING
     },
+    first_name:{
+        type:DataTypes.STRING
+    },
+    last_name:{
+        type:DataTypes.STRING
+    },
+    national_number:{
+        type:DataTypes.STRING
+    },
+    is_confirmed:{
+        type:DataTypes.BOOLEAN
+    }
 },{
     sequelize,
     modelName:'Users'
