@@ -21,12 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/',require('./routes/auth'))
 
-app.get('/signup', function(req, res) {
-    res.render('signup',{});
-});
 
-app.get('/dashboard', function(req, res) {
-    res.render('dashboard',{});
-});
 
 module.exports=app;
