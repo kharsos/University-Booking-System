@@ -17,7 +17,7 @@ section{
   color: white;
   font-size: bold;
 }
-#fullname,#emailAddress,#password,#confirmPassword,#EducationLevel,#CNE,#PPT,#Service,.select {
+#Username,#emailAddress,#password,#confirmPassword,#EducationLevel,#CNE,#PPT,#Service,#firstname,#lastname,.select {
   background-color: #213b4f;
   color: white;
 }
@@ -27,7 +27,7 @@ section{
 #emailAddress::placeholder {
   color: lightgray;
 }
-#fullname::placeholder {
+#Username::placeholder {
     color: lightgray;
   }
 #confirmPassword::placeholder {
@@ -45,6 +45,12 @@ section{
 #Service::placeholder {
     color: lightgray;
   }
+#firstname::placeholder {
+    color: lightgray;
+  }
+#lastname::placeholder {
+    color: lightgray;
+  }
 label{
   font-weight: bold;
   font-size: large;
@@ -58,8 +64,6 @@ label{
   margin-top: 40px;
   margin-left: 40px;
 }
-
-/* Custom CSS to set text color to white */
 .text-white {
   color: white;
 }
@@ -69,18 +73,16 @@ label{
 .hidden{
   display: none;
 }
+.image{
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #avatar{
-  width: 40%;
+  width:100%;
 }
-.passwordMatching{
-  display: none;
-
-}
-.validateEmail{
-  display: none;
-
-}
-.validatePassword{
+.validate{
   display: none;
 }
 i{
