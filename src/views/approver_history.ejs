@@ -24,7 +24,6 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-    
     <!-- top nav bar -->
     <header id="header" class="fixed-top d-flex justify-content-center">
         <h1 class="logo container-fluid">
@@ -43,7 +42,8 @@
                             <i class="ti-bar-chart"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Booking Requests</a></li>
+                        <li><a class="dropdown-item" href="/dashbord/<%= userId %>">Booking Requests</a></li>
+                        <li><a class="dropdown-item" href="/dashbord/<%= userId%>">Approval History</a></li>
                         </ul>
                     </div>
                 </li>
@@ -53,31 +53,7 @@
         <!-- end left-sidenav-->
 
         <section class="col-md-10">
-            <table class="table table-striped">
-                <thead>
-                    <th>booking id </th>
-                    <th>user id</th>
-                    <th>hall id</th>
-                    <th>expected attendees</th>
-                    <th>purpose</th>
-                    <th>status</th>
-                    <th colspan="2">Action</th>
-                </thead>
-                <tbody>
-                    <% data.map(booking => { %>
-                        <tr>
-                          <td><%= booking.id %></td>
-                          <td><%= booking.userId %></td>
-                          <td><%= booking.hall_Id %></td>
-                          <td><%= booking.expectedAttendees %></td>
-                          <td><%= booking.purpose %></td>
-                          <td><%= booking.status %></td>
-                          <td><form method="post" action="/dashbord/reject"><button type="submit" class="btn btn-outline-danger">reject</button></form></td>
-                          <td><form method="post" action=""><button type="submit" class="btn btn-success">Approve</button></form></td>
-                        </tr>
-                      <% }); %>
-                </tbody>
-            </table>
+            
         </section>
 
     </main>     

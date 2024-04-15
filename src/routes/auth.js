@@ -1,7 +1,9 @@
 const express = require('express')
 const {
     login,
-    dashbord
+    dashbord,
+    rejected,
+    reason
 }=require('../controllers/userController')
 
 const router = express.Router()
@@ -19,5 +21,9 @@ router.get('/login',(req,res)=>{
 router.post('/login',login)
 
 router.get('/dashbord/:userid',dashbord)
+
+router.post('/dashbord/:userid/reject/:bookingid',rejected)
+
+router.post("/reject/:userId/:bookingid",reason)
 
 module.exports = router

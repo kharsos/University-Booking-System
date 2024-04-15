@@ -1,5 +1,6 @@
 const {Model,DataTypes}=require('sequelize');
 const sequelize=require('../../config/Database');
+const User = require('./Users')
 class bookings extends Model{}
 bookings.init({
     userId:{
@@ -28,5 +29,4 @@ bookings.init({
     modelName:'bookings'
 }
 )
-
 module.exports=bookings;
