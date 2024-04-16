@@ -1,7 +1,6 @@
 
 const express = require('express');
 const User=require('../models/Users');
-const hall = require('../models/Hall')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router()
@@ -34,17 +33,8 @@ router.post('/signup', async (req, res) => {
 
 const {
     login,
-    dashbord,
-    rejected,
-    reason,
-    approve,
-    approved,
-    booking_history,
-    booking_list
 }=require('../controllers/userController');
-const bookings = require('../models/Bookings');
-const { useInflection } = require('sequelize');
-const user = require('../models/Users');
+
 
 router.get('/signup', function(req, res) {
     res.render('signup',{});
@@ -65,21 +55,7 @@ router.get('/login',(req,res)=>{
 
 router.post('/login',login)
 
-router.get('/dashbord/:userid',dashbord)
 
-
-router.post('/dashbord/:userid/reject/:bookingid',rejected)
-
-router.post('/dashbord/:userid/approve/:bookingid',approve)
-
-router.get('/approve/:userid/:bookingid',approved)
-router.post('/approve/:userid/:bookingid',approved)
-
-router.post("/reject/:userId/:bookingid",reason)
-
-router.get('/dashbord/:userid/history',booking_history)
-
-router.get('/dashbord/:userid/bookings',booking_list)
 
 
 module.exports = router

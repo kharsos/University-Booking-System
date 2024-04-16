@@ -3,7 +3,8 @@ const sequelize=require('../config/Database');
 const path = require('path')
 const app = express()
 const bodyParser =require('body-parser')
-
+const auteRoute = require('./routes/auth')
+const approverRouter = require('./routes/approverRoute')
 app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.json())
@@ -14,7 +15,9 @@ app.set('view engine','ejs')
 
 app.use(express.static('public'))
 
-app.use('/',require('./routes/auth'))
+app.use('/',auteRoute)
+
+app.use('/',approverRouter)
 
 
 
