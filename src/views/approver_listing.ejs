@@ -60,12 +60,12 @@
                 <table class="table table-striped">
                     <thead>
                         <tr class="table-dark">
-                        <th>id booking</th>
-                        <th>user</th>
-                        <th>hall</th>
-                        <th>status</th>
-                        <th>start date</th>
-                        <th>end date</th></tr>
+                        <th>booking id </th>
+                        <th>user id</th>
+                        <th>hall id</th>
+                        <th>expected attendees</th>
+                        <th>purpose</th>
+                        <th>status</th></tr>
                     </thead>
                     <tbody>
                         <% data.map(booking => { %>
@@ -73,9 +73,9 @@
                               <td><%= booking.id %></td>
                               <td><%= booking.user.username %></td>
                               <td><%= booking.Hall.name %></td>
+                              <td><%= booking.expectedAttendees %></td>
+                              <td><%= booking.purpose %></td>
                               <td><%= booking.status %></td>
-                              <td><%= booking.startDate %></td>
-                              <td><%= booking.endDate %></td>
                             </tr>
                           <% }); %>
                     </tbody>
