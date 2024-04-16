@@ -3,7 +3,7 @@ const sequelize=require('../config/Database');
 const path = require('path')
 const app = express()
 const bodyParser =require('body-parser')
-const auteRoute = require('./routes/auth')
+const auteRoute = require('./routes/authRoute')
 const approverRouter = require('./routes/approverRoute')
 app.use(bodyParser.urlencoded({extended:true}))
 

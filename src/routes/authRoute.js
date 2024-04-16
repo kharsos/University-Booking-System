@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
 
 const {
     login,
-}=require('../controllers/userController');
+}=require('../controllers/authController');
 
 
 router.get('/signup', function(req, res) {
