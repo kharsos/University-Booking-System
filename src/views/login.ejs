@@ -32,7 +32,7 @@
                       <div class="col-md-6 mb-4">
                         <label class="form-label" for="emailAddress">Email</label>
                         <input type="email" id="emailAddress" name="email" class="form-control form-control-md has-validation" placeholder="example@uca.ac.ma" required/>
-                        <i class="text-danger">
+                        <i class="text-danger" id="emailerr">
                           <% let email_err= err.email ? 'user does not exist !' : ''  %>
                           <%= email_err %>
                         </i>
@@ -44,7 +44,7 @@
                         <div class="form-outline">
                         <label class="form-label" for="password">Password</label>
                         <input type="password" id="password" name="password" class="form-control form-control-md has-validation"placeholder="•••••••" required />
-                        <i class="text-danger">
+                        <i class="text-danger" id="passerr">
                           <% let password_err= err.password ? 'password incorrect !' : ''  %>
                           <%= password_err %>
                         </i>
@@ -62,7 +62,7 @@
                     </div>
 
                       <div class="pt-2">
-                        <input class="btn btn-primary btn-lg" type="submit" value="sign in your account" id="btn" onclick="click()"/>
+                        <input class="btn btn-primary btn-lg" type="submit" value="sign in your account" id="btn"/>
                       </div>
                     </div>
                   </form>
