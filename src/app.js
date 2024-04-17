@@ -19,6 +19,8 @@ app.use('/',auteRoute)
 
 app.use('/',approverRouter)
 
+app.get('/email',(req,res)=>res.render('emailTemplate',{}))
+
 
 
 module.exports=app;

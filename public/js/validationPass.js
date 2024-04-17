@@ -23,14 +23,14 @@ function submit(event){
 
     var emailInput = document.getElementById("emailAddress");
     const email = emailInput.value;
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@uca.ac\.[a-zA-Z]{2,}$/;
     if (email=='') {
         event.preventDefault()
         document.getElementById('emailerr').innerHTML="email required !";
     } 
     else if (!regexEmail.test(email)){
         event.preventDefault()
-        document.getElementById('emailerr').innerHTML="Email is invalid."
+        document.getElementById('emailerr').innerHTML="Email must be like ex: exapmle@uca.ac.ma"
 }
 else{
     document.getElementById('emailerr').innerHTML=""; 

@@ -2,6 +2,16 @@ const booking = require('../models/Bookings')
 const approval = require('../models/Approval')
 const hall = require('../models/Hall')
 const user = require('../models/Users')
+const nodemailer = require('nodemailer')
+const { route } = require('../app')
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'ham118849@gmail.com',
+      pass:'flwn zqtc sbnc naro'
+    }
+  });
 
 const dashbord = async (req,res) =>{
     const userId = req.params.userid
@@ -37,6 +47,21 @@ const rejected =async (req,res)=>{
 }
 
 const approve = async(req,res)=>{
+    // const mailOptions = {
+    //     to: 'universitycadiayad@gmail.com',
+    //     from: 'ham118849@gmail.com',
+    //     subject: 'Test Email',
+    //     text: 'This is a test email sent from Node.js using Nodemailer.'
+    //   };
+    //   transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) {
+    //       console.log('Error:', error);
+    //       res.status(500).send('Error sending email');
+    //     } else {
+    //       console.log('Email sent:', info.response);
+    //       res.send('Email sent successfully');
+    //     }
+    //   });
     await booking.update({
             status:'approved'
         },
@@ -95,6 +120,7 @@ const booking_list = async (req,res) =>{
     })
     res.render('approver_listing',{data:data,userId:userId})
 }   
+
 
 module.exports = {
     booking_history,
