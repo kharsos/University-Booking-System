@@ -17,7 +17,7 @@ user.init({
         type:DataTypes.STRING
     },
     national_number:{
-        type:DataTypes.INTEGER
+        type:DataTypes.STRING
     },
     role:{
         type:DataTypes.STRING

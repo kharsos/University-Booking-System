@@ -1,5 +1,5 @@
 const app=require('./src/app');
-app.use('/',require('./src/routes/auth'))
+app.use('/',require('./src/routes/authRoute'))
 
 const sequelize = require('./config/Database')
 sequelize.sync()
