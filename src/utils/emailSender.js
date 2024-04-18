@@ -3,12 +3,13 @@ const ejs = require('ejs');
 const fs = require('fs');
 const path = require('path');
 const juice = require('juice')
+require('dotenv').config()
 const emailSending = async (booking) =>{
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: 'ham118849@gmail.com',
-      pass:'flwn zqtc sbnc na'
+      pass:process.env.EMAILPASS
     }
   });
   const templateFilePath = path.join(__dirname, '../src/views/emailTemplate.ejs');

@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer')
 const { route } = require('../app')
 const {Id} = require('../middleware/authorization')
 
-const emailSending=require('../../utils/emailSender')
+const emailSending=require('../utils/emailSender')
 
 const dashbord = async (req,res) =>{
     const userId = Id 
