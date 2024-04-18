@@ -5,13 +5,7 @@ const user = require('../models/Users')
 const nodemailer = require('nodemailer')
 const { route } = require('../app')
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'ham118849@gmail.com',
-      pass:'flwn zqtc sbnc naro'
-    }
-  });
+const emailSending=require('../../utils/emailSender')
 
 const dashbord = async (req,res) =>{
     const userId = req.params.userid
@@ -47,33 +41,30 @@ const rejected =async (req,res)=>{
 }
 
 const approve = async(req,res)=>{
-    // const mailOptions = {
-    //     to: 'universitycadiayad@gmail.com',
-    //     from: 'ham118849@gmail.com',
-    //     subject: 'Test Email',
-    //     text: 'This is a test email sent from Node.js using Nodemailer.'
-    //   };
-    //   transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) {
-    //       console.log('Error:', error);
-    //       res.status(500).send('Error sending email');
-    //     } else {
-    //       console.log('Email sent:', info.response);
-    //       res.send('Email sent successfully');
-    //     }
-    //   });
-    await booking.update({
-            status:'approved'
+    const data = await booking.findOne({include:[
+        {
+            model:user,
+            required:true
         },
         {
-            where:{
-                id:req.params.bookingid
-            }
+            model:hall,
+            required:true
+        }
+    ],where:{
+        id:4
+    }})
+    emailSending(data)
+    // await booking.update({
+    //         status:'approved'
+    //     },
+    //     {
+    //         where:{
+    //             id:req.params.bookingid
+    //         }
         
-        })
-        .then(res.redirect(`/approve/${req.params.userid}/${req.params.bookingid}`) )
-        .catch(err=>console.log(err))
-        
+    //     })
+    //     .then(res.redirect(`/approve/${req.params.userid}/${req.params.bookingid}`) )
+    //     .catch(err=>console.log(err))
 }
 
 const approved = async(req,res)=>{

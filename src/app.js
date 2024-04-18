@@ -5,6 +5,9 @@ const app = express()
 const bodyParser =require('body-parser')
 const auteRoute = require('./routes/authRoute')
 const approverRouter = require('./routes/approverRoute')
+const booking = require('./models/Bookings')
+const User = require('./models/Users')
+const Hall = require('./models/Hall')
 app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.json())
@@ -19,7 +22,21 @@ app.use('/',auteRoute)
 
 app.use('/',approverRouter)
 
-app.get('/email',(req,res)=>res.render('emailTemplate',{}))
+app.get('/email',async(req,res)=>{
+    const data = await booking.findOne({include:[
+        {
+            model:User,
+            required:true
+        },
+        {
+            model:Hall,
+            required:true
+        }
+    ],where:{
+        id:4
+    }})
+    // res.send(data)})
+    res.render('emailTemplate',{data:data})})
 
 
 
