@@ -32,13 +32,13 @@
                 </a>
                 <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="/dashbord/<%= userId %>" class="sidebar-link">Booking Requests</a>
+                        <a href="/dashbord" class="sidebar-link">Booking Requests</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/dashbord/<%= userId %>/history" class="sidebar-link">Booking History</a>
+                        <a href="/dashbord/history" class="sidebar-link">Booking History</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/dashbord/<%= userId %>/bookings" class="sidebar-link">All Bookings</a>
+                        <a href="/dashbord/bookings" class="sidebar-link">All Bookings</a>
                     </li>
                 </ul>
             </li>
@@ -80,12 +80,12 @@
                                 <td><%= booking.purpose %></td>
                                 <td><%= booking.status %></td>
                                 <td>
-                                    <form method="post" action='/dashbord/<%=userId%>/reject/<%=booking.id%>'>
+                                    <form method="post" action='/dashbord/reject/<%=booking.id%>'>
                                         <button type="submit" class="btn btn-outline-danger">Reject</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="post" action="/dashbord/<%=userId%>/approve/<%=booking.id%>">
+                                    <form method="post" action="/dashbord/approve/<%=booking.id%>">
                                         <button type="submit" class="btn btn-success">Approve</button>
                                     </form>
                                 </td>

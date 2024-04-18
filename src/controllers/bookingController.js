@@ -4,11 +4,12 @@ const hall = require('../models/Hall')
 const user = require('../models/Users')
 const nodemailer = require('nodemailer')
 const { route } = require('../app')
+const {Id} = require('../middleware/authorization')
 
 const emailSending=require('../../utils/emailSender')
 
 const dashbord = async (req,res) =>{
-    const userId = req.params.userid
+    const userId = Id 
     const data = await booking.findAll({
         include:[
             {
@@ -35,7 +36,7 @@ const rejected =async (req,res)=>{
             id:req.params.bookingid
         }
     })
-    .then(res.render('reason',{bookingid:req.params.bookingid,userId:req.params.userid}))
+    .then(res.render('reason',{bookingid:req.params.bookingid,userId:Id}))
     .catch((err)=>console.log(err))
 
 }
@@ -63,20 +64,20 @@ const approve = async(req,res)=>{
             }
         
         })
-        .then(res.redirect(`/approve/${req.params.userid}/${req.params.bookingid}`) )
+        .then(res.redirect(`/approve/${req.params.bookingid}`) )
         .catch(err=>console.log(err))
 }
 
 const approved = async(req,res)=>{
-    let data = {booking_id:parseInt(req.params.bookingid),approver_id:parseInt(req.params.userid),status:'approved',reason:'' }
+    let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'approved',reason:'' }
         await approval.create(data)
-        res.redirect(`/dashbord/${req.params.userid}`)
+        res.redirect(`/dashbord`)
 }
 
 const reason =(req,res) =>{
-    let data = {booking_id:parseInt(req.params.bookingid),approver_id:parseInt(req.params.userId),status:'rejected',reason:req.body.reject }
+    let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'rejected',reason:req.body.reject }
     approval.create(data)
-    res.redirect(`/dashbord/${data.userId}`)  
+    res.redirect(`/dashbord`)  
 }
 
 const booking_history = async(req,res)=>{
@@ -92,11 +93,11 @@ const booking_history = async(req,res)=>{
             }
         ]
     })
-    .then(data=>res.render('approver_history',{data:data,userId:req.params.userid}))
+    .then(data=>res.render('approver_history',{data:data,userId:Id}))
 }
 
 const booking_list = async (req,res) =>{
-    const userId = req.params.userid
+    const userId = Id
     const data = await booking.findAll({
         include:[
             {

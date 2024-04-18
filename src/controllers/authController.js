@@ -28,13 +28,15 @@ const login = async (req,res)=>{
                     }
                     else{
                         localStorage.setItem('token',`Bearer ${token}`)
-                        res.redirect(`/dashbord/${test.id}`)
+                        res.redirect(`/dashbord`)
+                        
                     }
                 })
             }
         })
     }
 }
+
 
 
 

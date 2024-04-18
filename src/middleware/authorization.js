@@ -20,4 +20,14 @@ const verifyTokenAccess = (req,res,next) =>{
     })
 }
 
-module.exports =verifyTokenAccess
+let token = localStorage.getItem('token')
+const BearerToken = token.split(' ')
+const authToken = BearerToken[1]
+const decoded =jwt.decode(authToken)
+const Id = decoded.id
+
+
+module.exports ={
+    verifyTokenAccess,
+    Id
+}
