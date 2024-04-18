@@ -121,12 +121,12 @@
                 <h2 class="my-5">Confirmation de réservation !</h2>
                 <p>Confirmation de réservation de la salle FMPM : Votre réservation pour <%= data.Hall.name %> est confirmée ! </p>
                 <p>Cher/Chère <%= data.user.username %>,</p>
-                <p>Cet email confirme votre réservation de la salle <%= data.Hall.name %> pour votre événement le <%= data.startDate.toISOString().split('T')[0] %> de <%= data.startDate.getHours() %>:<%= data.startDate.getMinutes() %>:<%= data.startDate.getSeconds() %> à <%= data.endDate.getHours() %>:<%= data.endDate.getMinutes() %>:<%= data.endDate.getSeconds() %> .</p>
+                <p>Cet email confirme votre réservation de la salle <%= data.Hall.name %> pour votre événement le <%= data.startDate.toISOString().split('T')[0] %> de <%= data.startDate.getHours() %>H:<%= data.startDate.getMinutes() %>min:<%= data.startDate.getSeconds() %>s à <%= data.endDate.getHours() %>H:<%= data.endDate.getMinutes() %>min:<%= data.endDate.getSeconds() %>s .</p>
                 <p>Détails de la réservation :</p>
                 <p>- <strong>Nom de la salle :</strong>  <%= data.Hall.name %></p>
                 <p>- <strong>Emplacement :</strong> <%= data.Hall.location %></p>
                 <p>- <strong>Date :</strong> <%= data.startDate.toISOString().split('T')[0] %></p>
-                <p>- <strong>Heure :</strong> <%= data.startDate.getHours() %>:<%= data.startDate.getMinutes() %>:<%= data.startDate.getSeconds() %> - <%= data.endDate.getHours() %>:<%= data.endDate.getMinutes() %>:<%= data.endDate.getSeconds() %></p>
+                <p>- <strong>Heure :</strong> <%= data.startDate.getHours() %>H:<%= data.startDate.getMinutes() %>min:<%= data.startDate.getSeconds() %>s - <%= data.endDate.getHours() %>H:<%= data.endDate.getMinutes() %>min:<%= data.endDate.getSeconds() %>s</p>
                 <p>- <strong>Participants attendus :</strong> <%= data.expectedAttendees %></p>
                 <p>- <strong>Objectif :</strong> <%= data.purpose %></p>
                 <p>Nous espérons que cette réservation répond à vos besoins. Si vous avez besoin de ressources supplémentaires pour votre événement, veuillez visiter notre page de ressources:[Lien vers la page des ressources]</p>
