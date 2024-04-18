@@ -54,17 +54,17 @@ const approve = async(req,res)=>{
         id:4
     }})
     emailSending(data)
-    // await booking.update({
-    //         status:'approved'
-    //     },
-    //     {
-    //         where:{
-    //             id:req.params.bookingid
-    //         }
+    await booking.update({
+            status:'approved'
+        },
+        {
+            where:{
+                id:req.params.bookingid
+            }
         
-    //     })
-    //     .then(res.redirect(`/approve/${req.params.userid}/${req.params.bookingid}`) )
-    //     .catch(err=>console.log(err))
+        })
+        .then(res.redirect(`/approve/${req.params.userid}/${req.params.bookingid}`) )
+        .catch(err=>console.log(err))
 }
 
 const approved = async(req,res)=>{
