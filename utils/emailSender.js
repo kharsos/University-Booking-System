@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: 'ham118849@gmail.com',
-      pass:'flwn zqtc sbnc naro'
+      pass:'flwn zqtc sbnc na'
     }
   });
   const templateFilePath = path.join(__dirname, '../src/views/emailTemplate.ejs');
