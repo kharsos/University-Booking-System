@@ -4,19 +4,19 @@ const User = require('./Users')
 const hall = require('./Hall')
 class bookings extends Model{}
 bookings.init({
-    userId:{
+    user_id:{
         type:DataTypes.INTEGER
     },
-    hall_Id:{
+    hall_id:{
+        type:DataTypes.INTEGER
+    },
+    start_date:{
         type:DataTypes.DATE
     },
-    startDate:{
+    end_date:{
         type:DataTypes.DATE
     },
-    endDate:{
-        type:DataTypes.DATE
-    },
-    expectedAttendees:{
+    expected_attendees:{
         type:DataTypes.INTEGER
     },
     purpose:{
@@ -31,10 +31,10 @@ bookings.init({
 }
 )
 
-bookings.belongsTo(hall,{foreignKey:'hall_Id'})
+bookings.belongsTo(hall,{foreignKey:'hall_id'})
 
 
 
-bookings.belongsTo(User,{foreignKey:'userId'})
+bookings.belongsTo(User,{foreignKey:'user_id'})
 
 module.exports=bookings;

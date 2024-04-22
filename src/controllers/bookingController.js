@@ -2,8 +2,8 @@ const booking = require('../models/Bookings')
 const approval = require('../models/Approval')
 const hall = require('../models/Hall')
 const user = require('../models/Users')
-const nodemailer = require('nodemailer')
-const { route } = require('../app')
+const resource = require('../models/Resources')
+const Booking_Resource = require('../models/Booking_Resource')
 const {Id} = require('../middleware/authorization')
 
 const emailSending=require('../utils/emailSender')
@@ -11,7 +11,55 @@ const emailSending=require('../utils/emailSender')
 const dashbord = async (req,res) =>{
     const userId = Id 
     const data = await booking.findAll({
-        include:[
+        include: [{
+          model: resource,
+          through: {
+            model: Booking_Resource,
+            attributes: [] // Exclude join table attributes from the result
+          }
+        },{
+            model:user,
+            required:true
+        },
+        {
+            model:hall,
+            required:true
+        }
+    ]
+        ,where:{
+            status:'pending'
+        }
+      })
+    res.render('approver_dashbord',{data:data,userId:userId})
+}   
+
+const rejected =async (req,res)=>{
+    //Check  if booking Id is an integer before running any sql request
+    const BookingId =Number(req.params.bookingid)
+    const idCheck = /^[0-9]+$/
+    if(idCheck.test(BookingId)){
+        await booking.update({
+            status : 'rejected'
+        },{
+            where:{
+                id:BookingId
+            }
+        })
+        .then(res.render('reason',{bookingid:BookingId,userId:Id}))
+        .catch((err)=>console.log(err))
+    
+    }
+    else{
+        console.log('bookingid must be integer')
+    }
+}
+
+const approve = async(req,res)=>{
+    //Check  if booking Id is an integer before running any sql request
+    const BookingId =Number(req.params.bookingid)
+    const idCheck = /^[0-9]+$/
+    if(idCheck.test(BookingId)){
+        const data = await booking.findOne({include:[
             {
                 model:user,
                 required:true
@@ -20,53 +68,27 @@ const dashbord = async (req,res) =>{
                 model:hall,
                 required:true
             }
-        ],
-        where:{
-            status:"pending"
-        }
-    })
-    res.render('approver_dashbord',{data:data,userId:userId})
-}   
-
-const rejected =async (req,res)=>{
-    await booking.update({
-        status : 'rejected'
-    },{
-        where:{
-            id:req.params.bookingid
-        }
-    })
-    .then(res.render('reason',{bookingid:req.params.bookingid,userId:Id}))
-    .catch((err)=>console.log(err))
-
-}
-
-const approve = async(req,res)=>{
-    const data = await booking.findOne({include:[
-        {
-            model:user,
-            required:true
-        },
-        {
-            model:hall,
-            required:true
-        }
-    ],where:{
-        id:4
-    }})
-    emailSending(data)
-    await booking.update({
-            status:'approved'
-        },
-        {
-            where:{
-                id:req.params.bookingid
-            }
-        
-        })
-        .then(res.redirect(`/approve/${req.params.bookingid}`) )
-        .catch(err=>console.log(err))
-}
+        ],where:{
+            id:BookingId
+        }})
+        emailSending(data)
+        await booking.update({
+                status:'approved'
+            },
+            {
+                where:{
+                    id:BookingId
+                }
+            
+            })
+            .then(res.redirect(`/approve/${BookingId}`) )
+            .catch(err=>console.log(err))
+    
+    }
+    else{
+        console.log('bookingid must be integer')
+    }
+    }
 
 const approved = async(req,res)=>{
     let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'approved',reason:'' }
@@ -81,7 +103,7 @@ const reason =(req,res) =>{
 }
 
 const booking_history = async(req,res)=>{
-    await booking.findAll({
+    const data = await booking.findAll({
         include:[
             {
                 model:user,
@@ -93,7 +115,7 @@ const booking_history = async(req,res)=>{
             }
         ]
     })
-    .then(data=>res.render('approver_history',{data:data,userId:Id}))
+    res.render('approver_history',{data:data,userId:Id})
 }
 
 const booking_list = async (req,res) =>{

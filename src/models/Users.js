@@ -10,14 +10,14 @@ user.init({
     username:{
         type:DataTypes.STRING
     },
-    firstname:{
+    first_name:{
         type:DataTypes.STRING
     },
-    lastname:{
+    last_name:{
         type:DataTypes.STRING
     },
     national_number:{
-        type:DataTypes.STRING
+        type:DataTypes.JSON
     },
     role:{
         type:DataTypes.STRING

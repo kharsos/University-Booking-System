@@ -76,8 +76,8 @@
                                     <td><%= booking.user.username %></td>
                                     <td><%= booking.Hall.name %></td>
                                     <td><%= booking.status %></td>
-                                    <td><%= booking.startDate.getHours() %>:<%= booking.startDate.getMinutes() %>:<%= booking.startDate.getSeconds() %></td>
-                                    <td><%= booking.endDate.getHours() %>:<%= booking.endDate.getMinutes() %>:<%= booking.endDate.getSeconds() %></td>
+                                    <td><%= booking.start_date.getHours() %>:<%= booking.start_date.getMinutes() %>:<%= booking.start_date.getSeconds() %></td>
+                                    <td><%= booking.end_date.getHours() %>:<%= booking.end_date.getMinutes() %>:<%= booking.end_date.getSeconds() %></td>
                                 </tr>
                             <% }); %>
                         </tbody>

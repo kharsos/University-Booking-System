@@ -67,6 +67,7 @@
                             <th>Expected Attendees</th>
                             <th>Purpose</th>
                             <th>Status</th>
+                            <th>Resources</th>
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -76,9 +77,18 @@
                                 <td><%= booking.id %></td>
                                 <td><%= booking.user.username %></td>
                                 <td> <%= booking.Hall.name %></td>
-                                <td><%= booking.expectedAttendees %></td>
+                                <td><%= booking.expected_attendees %></td>
                                 <td><%= booking.purpose %></td>
                                 <td><%= booking.status %></td>
+                                <td>
+                                    <select>
+                                        <%booking.Resources.map(resource=>{ %>
+                                        <option disabled selected>
+                                            <%= resource.name %>
+                                        </option>
+                                        <% }) %>
+                                    </select>
+                                </td>
                                 <td>
                                     <form method="post" action='/dashbord/reject/<%=booking.id%>'>
                                         <button type="submit" class="btn btn-outline-danger">Reject</button>
