@@ -33,8 +33,8 @@ router.post('/signup', async (req, res) => {
 
 const {
     login,
-    dashbord
-}=require('../controllers/userController')
+}=require('../controllers/authController');
+
 
 router.get('/signup', function(req, res) {
     res.render('signup',{});
@@ -52,8 +52,10 @@ router.get('/login',(req,res)=>{
 
 router.post('/login',login)
 
-router.get('/dashbord/:userid',dashbord)
+
+
 
 
 
 module.exports = router
+

@@ -19,7 +19,7 @@ hall.init({
     }
 },{
     sequelize,
-    modelName:'hall'
+    modelName:'Hall'
 }
 )
 

@@ -3,7 +3,8 @@ const localStorage = new LocalStorage('./scratch')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const user = require('../models/Users')
-const booking = require('../models/Bookings')
+const sequelize = require('../../config/Database')
+
 
 const login = async (req,res)=>{
     let {email,password}=req.body
@@ -27,7 +28,8 @@ const login = async (req,res)=>{
                     }
                     else{
                         localStorage.setItem('token',`Bearer ${token}`)
-                        res.redirect(`/dashbord/${test.id}`)
+                        res.redirect(`/dashbord`)
+                        
                     }
                 })
             }
@@ -35,16 +37,9 @@ const login = async (req,res)=>{
     }
 }
 
-const dashbord = async (req,res) =>{
-    const data = await booking.findAll({
-        where:{
-            status:"pending"
-        }
-    })
-    res.render('dashbord',{data:data})
-}
+
+
 
 module.exports = {
-    login,
-    dashbord
+    login
 }
