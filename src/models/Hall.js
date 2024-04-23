@@ -1,7 +1,7 @@
 const {Model,DataTypes}=require('sequelize');
 const sequelize=require('../../config/Database');
-class halls extends Model{}
-halls.init({
+class hall extends Model{}
+hall.init({
     name:{
         type:DataTypes.STRING
     },
@@ -16,12 +16,11 @@ halls.init({
     },
     image_url:{
         type:DataTypes.STRING
-    },
-
+    }
 },{
     sequelize,
-    modelName:'halls'
+    modelName:'Hall'
 }
-);
+)
 
-module.exports=halls;
+module.exports=hall;

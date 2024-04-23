@@ -1,23 +1,35 @@
-document.getElementById('btn').addEventListener('click', function() {
-    const password = document.getElementById('password').value;
+function submit(event){
+            const password = document.getElementById('password').value;
     const regexPassword = /^[A-Z a-z 0-9 @ - _ \.]{8,}$/;
-    if (regexPassword.test(password)) {
-        console.log("Password is secure and strong.");
-    } else {
-        console.log("Password does not meet the criteria.");
+    if (password=='') {
+        event.preventDefault()
+        document.getElementById('passerr').innerHTML="Password required !";
+    } 
+    else if(!regexPassword.test(password)){
+        event.preventDefault()
+        document.getElementById('passerr').innerHTML="Password does not meet the criteria.";
     }
-})
+    else{
+        document.getElementById('passerr').innerHTML="";
+    }
 
 
-document.getElementById("emailAddress").addEventListener("submit", function(event) {
-    event.preventDefault()
+
+
     var emailInput = document.getElementById("emailAddress");
     const email = emailInput.value;
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (regexEmail.test(email)) {
-        console.log("Email is valid."); 
-    } else{
-        console.log("Email is invalid.")
-    }
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@uca.ac\.[a-zA-Z]{2,}$/;
+    if (email=='') {
+        event.preventDefault()
+        document.getElementById('emailerr').innerHTML="email required !";
+    } 
+    else if (!regexEmail.test(email)){
+        event.preventDefault()
+        document.getElementById('emailerr').innerHTML="Email must be like ex: exapmle@uca.ac.ma"
+}
+else{
+    document.getElementById('emailerr').innerHTML=""; 
+}
+}
 
-})
+document.getElementById('btn').addEventListener('click',submit)

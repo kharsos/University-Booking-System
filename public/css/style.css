@@ -1607,3 +1607,9 @@ section {
 #footer .footer-links a:hover {
   color: #3498db;
 }
+
+.contactUs{
+  background-color: rgba(0, 106, 178, 0.08);
+  padding: 100px;
+  border-radius:20px ;
+}

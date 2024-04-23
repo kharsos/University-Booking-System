@@ -13,11 +13,15 @@ app.use(express.json())
 //   res.render('student');
 // });
 // //botton de réservation
-app.get('/student', (req, res) => {
-  res.redirect('/reservation');
-});
+setTimeout(function(){
+  document.getElementById('error-alert').style.display = 'none';
+}, 2000);
 
-
+window.setTimeout(function() {
+  $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove(); 
+  });
+}, 4000);
 
 // document.getElementById("reservationBtn").addEventListener("click", function() {
 //   window.location.href = "localhost:8080/reservation";

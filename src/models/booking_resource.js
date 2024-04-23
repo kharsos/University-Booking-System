@@ -1,6 +1,6 @@
 const {Model,DataTypes}=require('sequelize');
 const sequelize=require('../../config/Database');
-const booking=require('./bookings')
+const booking=require('./Bookings')
 const resource=require('./resource')
 
 class booking_resource extends Model{}

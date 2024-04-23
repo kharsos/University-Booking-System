@@ -18,9 +18,7 @@ li {
 body {
     font-family: 'Poppins', sans-serif;
 }
-.logo{
-    width: 75%;
-}
+
 .wrapper {
     display: flex;
 }
@@ -41,7 +39,7 @@ body {
     min-width: 70px;
     z-index: 1000;
     transition: all .25s ease-in-out;
-    background-color: #0e2238;
+    background-color: #002440;
     display: flex;
     flex-direction: column;
 }
@@ -65,6 +63,9 @@ body {
 
 .sidebar-logo {
     margin: auto 0;
+}
+.img-fluid{
+    width: 75%;
 }
 
 .sidebar-logo a {

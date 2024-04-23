@@ -4,8 +4,19 @@ const path = require('path')
 const app = express()
 const bodyParser =require('body-parser')
 
+
 sequelize.sync()
 .then(()=>console.log('db is ready'))
+
+
+const auteRoute = require('./routes/authRoute')
+const approverRouter = require('./routes/approverRoute')
+const book=require('./routes/booking')
+const salle=require('./routes/hall')
+const booking = require('./models/Bookings')
+const User = require('./models/Users')
+const Hall = require('./models/halls')
+
 
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -19,58 +30,42 @@ app.use(express.static('public'))
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/',require('./routes/auth'))
 
-app.get('/login', function(req, res) {
-    res.render('login',{});
-});
+app.use('/',require('./routes/authRoute'))
+
+app.use('/',require('./routes/hall'));
+// app.use('/',require('./routes/bookingHistory'))
+app.use('/',require('./routes/booking'))
 
 app.use('/',require('./routes/hall'))
 
-app.get('/salle', function(req, res) {
-    res.render('salle',{});
-});
+app.use('/',require('./routes/bookingResource'))
 
-app.get('/sidebar', function(req, res) {
-    res.render('sidebar',{});
-});
+// app.get('/salle',(req,res)=>{
+  
+//     res.render('salle',{});
+//     res.redirect('/bookings')
+//   })
 
-app.use('/',require('./routes/booking'))
+app.use('/',salle)
+app.use('/',auteRoute)
+app.use('/',book)
+app.use('/',approverRouter)
 
-app.get('/reservation', (req, res) => {
-    res.render('reservation'); 
-});
+app.get('/email',async(req,res)=>{
+    const data = await booking.findOne({include:[
+        {
+            model:User,
+            required:true
+        },
+        {
+            model:Hall,
+            required:true
+        }
+    ],where:{
+        id:4
+    }})
+    // res.send(data)})
+    res.render('emailTemplate',{data:data})})
 
-app.get('/',require('./routes/booking'))
-
-
-// app.use('/',require('./routes/bookingResource'))
-// app.get('/reservation', (req, res) => {
-//     res.render('reservation'); 
-// });
-
-
-
-
-app.get('/hall', (req, res) => {
-    // Query database for available halls
-    const hall = []; // Fetch halls from database
-    res.render('hall', { hall });
-});
-
-// Route for submitting a booking request
-app.post('/reservation', (req, res) => {
-    // Parse form data and save booking request to database
-    res.redirect('/bookingHistory');
-});
-
-// Route for displaying booking history
-app.get('/bookingHistory', (req, res) => {
-    // Query database for user's booking history
-    const bookings = []; // Fetch bookings from database
-    res.render('bookingHistory', { bookings });
-});
-app.get('/student',(req,res)=>{
-    res.redirect('/reservation')
-})
 module.exports=app;
