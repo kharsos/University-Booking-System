@@ -8,36 +8,53 @@ const {Id} = require('../middleware/authorization')
 
 const emailSending=require('../utils/emailSender')
 
-const dashbord = async (req,res) =>{
-    const userId = Id 
-    const data = await booking.findAll({
-        include: [{
-          model: resource,
-          through: {
-            model: Booking_Resource,
-            attributes: [] // Exclude join table attributes from the result
-          }
-        },{
-            model:user,
-            required:true
-        },
-        {
-            model:hall,
-            required:true
-        }
-    ]
-        ,where:{
-            status:'pending'
-        }
-      })
-    res.render('approver_dashbord',{data:data,userId:userId})
-}   
+const dashbord = async (req, res,next) => {
+    try {
+        const userId = Id; 
+        await booking.findAll({
+            include: [
+            {
+                model: resource,
+                through: {
+                model: Booking_Resource,
+                attributes: [] 
+                }
+            },
+            {
+                model: user,
+                required: true
+            },
+            {
+                model: hall,
+                required: true
+            }
+            ],
+            where: {
+            status: 'pending'
+            }
+        })
+        .then(data=>{
+            if (!data) {
+                const err = new Error('no data found')
+                err.statusCode = 404
+                err.status = 'Not Found'
+                next(err)
+            }
+            else{
+                res.render('approver_dashbord', { data: data, userId: userId });
+            }
+        })
+    } catch (error) {
+      const err = new Error('Error in dashboard function:')
+      err.statusCode = 500
+      err.status = 'Error'
+      next(err)
+    }
+  };
 
-const rejected =async (req,res)=>{
-    //Check  if booking Id is an integer before running any sql request
-    const BookingId =Number(req.params.bookingid)
-    const idCheck = /^[0-9]+$/
-    if(idCheck.test(BookingId)){
+const rejected =async (req,res,next)=>{
+    try{
+        const BookingId =Number(req.params.bookingid)
         await booking.update({
             status : 'rejected'
         },{
@@ -46,19 +63,24 @@ const rejected =async (req,res)=>{
             }
         })
         .then(res.render('reason',{bookingid:BookingId,userId:Id}))
-        .catch((err)=>console.log(err))
+        .catch((err)=>{
+            let error = new Error(err.message)
+            error.statusCode = 404
+            error.status = 'Not Found'
+            next(error)
+        })
     
     }
-    else{
-        console.log('bookingid must be integer')
+    catch (err){
+        let error = new Error(err.message)
+        error.statusCode = err.status || 500
+        next(error)
     }
-}
+    }
 
-const approve = async(req,res)=>{
-    //Check  if booking Id is an integer before running any sql request
-    const BookingId =Number(req.params.bookingid)
-    const idCheck = /^[0-9]+$/
-    if(idCheck.test(BookingId)){
+const approve = async(req,res,next)=>{
+    try{
+        const BookingId =req.params.bookingid
         const data = await booking.findOne({include:[
             {
                 model:user,
@@ -82,57 +104,123 @@ const approve = async(req,res)=>{
             
             })
             .then(res.redirect(`/approve/${BookingId}`) )
-            .catch(err=>console.log(err))
+            .catch(err=>{
+                let error = new Error(err.message)
+                error.statusCode = err.status || 404
+                error.status = 'Not Found'
+                next(error)
+            })
+    }
+    catch (err){
+        let error = new Error(err.message)
+        error.statusCode = err.status || 500
+        next(error)
+    }
     
     }
-    else{
-        console.log('bookingid must be integer')
-    }
-    }
 
-const approved = async(req,res)=>{
-    let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'approved',reason:'' }
+const approved = async(req,res,next)=>{
+    try{
+        let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'approved',reason:'' }
         await approval.create(data)
-        res.redirect(`/dashbord`)
+        .then(()=>res.redirect(`/dashbord`))
+        .catch(err=>{
+            let error = new Error(err.message)
+            error.statusCode = err.status || 404
+            err.status = 'failed'
+            next(error)
+        })
+    }
+    catch (err){
+        let error = new Error(err.message)
+        error.statusCode = err.status || 500
+        next(error)
+    }
+    
+        
 }
 
-const reason =(req,res) =>{
-    let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'rejected',reason:req.body.reject }
-    approval.create(data)
-    res.redirect(`/dashbord`)  
-}
-
-const booking_history = async(req,res)=>{
-    const data = await booking.findAll({
-        include:[
-            {
-                model:user,
-                required:true
-            },
-            {
-                model:hall,
-                required:true
-            }
-        ]
+const reason =async (req,res,next) =>{
+    try{
+        let data = {booking_id:parseInt(req.params.bookingid),approver_id:Id,status:'rejected',reason:req.body.reject }
+        await approval.create(data)
+        .then(()=>res.redirect(`/dashbord`))
+        .catch(err=>{
+        let error = new Error(err.message)
+        error.statusCode = err.status || 404
+        error.status = 'failed'
+        next(error)
     })
-    res.render('approver_history',{data:data,userId:Id})
+    }
+    catch (err){
+        let error = new Error(err.message)
+        error.statusCode = err.status || 500
+        next(error)
+    }
+    
+    
 }
 
-const booking_list = async (req,res) =>{
-    const userId = Id
-    const data = await booking.findAll({
-        include:[
-            {
-                model:user,
-                required:true
-            },
-            {
-                model:hall,
-                required:true
-            }
-        ]
-    })
-    res.render('approver_listing',{data:data,userId:userId})
+const booking_history = async(req,res,next)=>{
+    try{
+        await booking.findAll({
+            include:[
+                {
+                    model:user,
+                    required:true
+                },
+                {
+                    model:hall,
+                    required:true
+                }
+            ]
+        })
+        .then((data)=>res.render('approver_history',{data:data,userId:Id}))
+        .catch(err=>{
+            let error = new Error(err.message)
+            error.statusCode = err.status || 404
+            error.status = ' Not Found'
+            next(error)
+        })
+    }
+    catch(err){
+        let error = new Error(err.message)
+        error.statusCode = err.status || 404
+        next(error)
+    }
+    
+}
+
+const booking_list = async (req,res,next) =>{
+    try{
+        const userId = Id
+        await booking.findAll({
+            include:[
+                {
+                    model:user,
+                    required:true
+                },
+                {
+                    model:hall,
+                    required:true
+                }
+            ]
+        })
+        .then((data)=>res.render('approver_listing',{data:data,userId:userId}))
+        .catch(err=>{
+            let error = new Error(err.message)
+            error.statusCode = err.status || 404
+            error.status = ' Not Found'
+            next(error)
+        })
+        
+    }
+    catch (err){
+        let error = new Error(err.message)
+        error.statusCode = err.status || 404
+        next(error)
+    }
+    
 }   
 
 
