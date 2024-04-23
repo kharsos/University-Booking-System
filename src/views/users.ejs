@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar With Bootstrap</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <img class="img-fluid" src="/images/logo.png" alt="">
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/admin" class="sidebar-link">
+                        <i class="lni lni-protection"></i>
+                        <span>Hall Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/resource" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Ressource Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/users" class="sidebar-link " >
+                        <i class="lni lni-user"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/reporting" class="sidebar-link  ">
+                        <i class="lni lni-layout"></i>
+                        <span>Reporting</span>
+                    </a>
+                    
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="/login" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="">
+            </nav>
+            <main class="content px-3 py-4">
+                <div class="container-fluid">
+                    <div class="mb-3">
+                        <div class="add-hall-btn-container">
+                            <h3 class="fw-bold fs-4 mb-3 title">User management</h3>
+                        </div>      
+            <main>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">email</th>
+                        <th scope="col">username</th>
+                        <th scope="col">last name</th>
+                        <th scope="col">first name</th>
+                        <th scope="col">national number</th>
+                        <th scope="col">role</th>
+                        <th scope="col">field</th>
+                        <th scope="col">is confirmed</th>                      
+                        <th scope="col">is activated</th>                      
+                        <th scope="col">action</th>                      
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% user.map((user) => { %>
+                    <tr>
+                        <th scope="row"><%= user.id %></th>
+                        <td><%= user.email %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.lastname %></td>
+                        <td><%= user.firstname %></td>
+                        <td> <%= user.national_number[0] === "" ? user.national_number[1] : user.national_number[1]===""? user.national_number[0] : user.national_number %></td>
+                        <td><%= user.role %></td>
+                        <td><%= user.field[0] === "" ? user.field[1] : user.field[1]===""?user.field[0]:user.field %></td>
+                        <td><%= user.is_confirmed %></td>
+                        <td><%= user.is_activated %></td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                
+                                
+                                <!-- Button trigger edit modal -->
+                                <button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#Edituser<%= user.id %>">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                    </svg>
+                                </button>
+                                
+                                <div class="confirmation">
+                                    <% if (!user.is_confirmed) { %>
+                                        <form class="mx-1 deleteIcon" method="post" action="/confirm/<%= user.id %>">
+                                            <button class="btn btn-primary ">
+                                                <!-- <svg xmlns="http://www.w3.org/2000/svg"   fill="currentColor" class="bi bi-check-circle confirm" viewBox="0 0 16 16">
+                                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                                    <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                                                </svg> -->
+                                                Confirm
+                                            </button>
+                                        </form>
+                                    <% } else { %>
+                                        <form class="mx-1 deleteIcon" method="post" action="/deny/<%= user.id %>">
+                                            <button class="btn btn-danger ">
+                                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16"  fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                                                    <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+                                                </svg> -->
+                                                Deny
+                                            </button>
+                                        </form>
+                                    <% } %>
+                            </div>
+                            <div class="activation">
+                                <% if (!user.is_activated) { %>
+                                    <form class="mx-1 deleteIcon" method="post" action="/activate/<%= user.id %>">
+                                        <button class="btn btn-success">
+                                            activate
+                                        </button>
+                                    </form>
+                                <% } else { %>
+                                    <form class="mx-1 deleteIcon" method="post" action="/deactivate/<%= user.id %>">
+                                        <button class="btn btn-secondary ">
+                                            deactivate
+                                        </button>
+                                    </form>
+                                <% } %>
+                            </div>
+                            </div>
+                        </td>
+                        <!--EDIT Modal -->
+                        <div class="modal fade" id="Edituser<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form method="post" action="/Edituser/<%= user.id %>">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">username</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" rows="3" name="email" value="<%= user.email %>"></input>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="firstname" class="form-label">First name</label>
+                                        <input type="text" class="form-control" id="firstname" rows="3" name="firstname" value="<%= user.firstname %>"></input>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lastname" class="form-label">last name</label>
+                                        <input type="text" class="form-control" id="lastname" rows="3" name="lastname" value="<%= user.lastname %>"></input>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="national_number" class="form-label">national number</label>
+                                        <input type="text" class="form-control" id="national_number" rows="3" name="national_number" value="<%= user.national_number[0] === '' ? user.national_number[1] : user.national_number[1]===''? user.national_number[0] : user.national_number %>"></input>
+                                    </div>
+                                    <div class="mb-3">
+                                    <label class="form-label select-label">Type</label>
+                                        <select class="select form-select" id="select" name="role">
+                                            <option selected disabled i>Choose Type</option>
+                                            <option value="student">student</option>
+                                            <option value="staff">staff </option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="field" class="form-label">field</label>
+                                        <input type="text" class="form-control" id="field" rows="3" name="field" value="<%= user.field[0] === '' ? user.field[1] : user.field[1]===''?user.field[0]:user.field %>"></input>
+                                    </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="modal_btn">Save changes</button>
+                                </div>
+                                    </div>
+                                </form>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div>
+                        
+                      </div>
+                      </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+            </main>
+            
+
+  
+  
+            <footer class="footer">
+              
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="/js/sidebar.js"></script>
+</body>
+</html>

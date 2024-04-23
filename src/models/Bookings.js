@@ -1,18 +1,19 @@
 const {Model,DataTypes}=require('sequelize');
 const sequelize=require('../../config/Database');
+const Hall = require('./Hall');
 class bookings extends Model{}
 bookings.init({
     userId:{
         type:DataTypes.INTEGER
     },
     hall_Id:{
-        type:DataTypes.DATE
+        type:DataTypes.INTEGER
     },
     startDate:{
         type:DataTypes.DATE
     },
     endDate:{
-        type:DataTypes.DATE
+        type:DataTypes.DATE 
     },
     expectedAttendees:{
         type:DataTypes.INTEGER
@@ -28,5 +29,5 @@ bookings.init({
     modelName:'bookings'
 }
 )
-
+bookings.belongsTo(Hall, { foreignKey: 'hall_Id' });
 module.exports=bookings;

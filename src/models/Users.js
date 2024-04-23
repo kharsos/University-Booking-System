@@ -17,7 +17,7 @@ user.init({
         type:DataTypes.STRING
     },
     national_number:{
-        type:DataTypes.INTEGER
+        type:DataTypes.JSON
     },
     role:{
         type:DataTypes.STRING
@@ -29,6 +29,9 @@ user.init({
         type:DataTypes.STRING
     },
     is_confirmed:{
+        type:DataTypes.BOOLEAN
+    },
+    is_activated:{
         type:DataTypes.BOOLEAN
     }
 },{
