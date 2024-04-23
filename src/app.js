@@ -24,6 +24,8 @@ app.set('view engine','ejs')
 
 app.use(express.static('public'))
 
+
+
 app.use('/',auteRoute)
 
 app.use('/',approverRouter)
@@ -53,7 +55,7 @@ app.all('*',(req,res,next)=>{
     next(err)
 })
 
-
+app.use(error_handling)
 
 
 module.exports=app;
