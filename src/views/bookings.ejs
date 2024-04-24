@@ -17,18 +17,18 @@
       <div class="main p-3">
         <% if (success) { %>
           <div class="alert alert-success" role="alert">
-            Réservation effectuée avec succès !
+            Reservation made successfully!
           </div>
           <% } %>
 
         <% if (err==true) { %>
           <div class="alert alert-danger col-md-5 text-center justify-content-center " id="error-alert" role="alert">
-              salle non disponile
+              salle non disponile 
           </div>
       <% } %>
       <% if (erreur==true) { %>
         <div class="alert alert-danger col-md-5 text-center justify-content-center " id="error-alert"  role="alert">
-            capacité de salle est inférieure au nombre de participants
+          hall capacity is less than the number of participants !
         </div>
     <% } %>
         <h1 id="h1">Réservation de salle</h1>
@@ -42,9 +42,6 @@
                 <% }); %>
               </select>
             </div>
-            
-              
-            
             
             <div class="form-group  ">
               <label for="dates">Start date:</label>
@@ -61,6 +58,15 @@
             <div class="form-group">
               <label for="participants">Participants:</label>
               <input type="number" class="form-control w-50" id="participants" name="expected_attendees" required>
+            </div>
+            <div>
+              <label for="resource_id">Resource:</label>
+              <select name="resource_id" id="resource_id" class="form-select w-50 " multiple>
+                <option value="" disabled>choose a ressource</option>
+                <% ressource.forEach(resource => { %>
+                  <option value="<%= resource.id %>"><%= resource.name %></option>
+                <% }); %>
+              </select>
             </div>
             
           

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./sidebar.ejs" >
     <link rel="stylesheet" href="../models/halls.js">
     <link rel="stylesheet" href="../models/Bookings.js">
+    <link rel="stylesheet" href="../models/resource.js">
 </head>
 <body>
     <div class="wrapper table-sm table-responsive-sm ml-0 ">
@@ -20,25 +21,34 @@
         <table class="table table-sm table-striped">
             <thead class="thead-dark">
                 <tr>
+                    <th scope="col">Booking ID</th>
                     <th scope="col">User</th>
                     <th scope="col">Hall</th>
                     <th scope="col">Start date</th>
                     <th scope="col">End date</th>
                     <th scope="col">Attendees</th>
                     <th scope="col">Purpose</th>
+                    <th scope="col">Resource</th>
                 </tr>
             </thead>
             <tbody>
                 <% bookings.forEach(booking => { %>
                     <tr>
+                        <td><%= booking.id %></td>
                         <td><%= booking.user_id %></td>
                         <td><%= booking.hall_id %></td>
                         <td><%= booking.start_date %></td>
                         <td><%= booking.end_date %></td>
                         <td><%= booking.expected_attendees %></td>
                         <td><%= booking.purpose %></td>
+                        <td>
+                            <% booking.booking_resources.forEach(bookingResource => { %>
+                                <%= bookingResource.ressource.name  %>      
+                               <% }) %>
+                           <% }); %>
+                        </td>
+                        
                     </tr>
-                <% }); %>
             </tbody>
         </table>
     </div>

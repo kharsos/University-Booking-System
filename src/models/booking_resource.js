@@ -20,4 +20,5 @@ booking_resource.init({
 
 booking_resource.belongsTo(booking,{foreignKey:"booking_id"})
 booking_resource.belongsTo(resource,{foreignKey:"resource_id"})
+booking.hasMany(booking_resource,{foreignKey:'booking_id'})
 module.exports=booking_resource;

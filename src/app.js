@@ -39,7 +39,7 @@ app.use('/',require('./routes/booking'))
 
 app.use('/',require('./routes/hall'))
 
-app.use('/',require('./routes/bookingResource'))
+// app.use('/',require('./routes/bookingResource'))
 
 // app.get('/salle',(req,res)=>{
   
