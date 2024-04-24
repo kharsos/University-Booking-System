@@ -11,7 +11,16 @@
     </style>
 </head>
 <body>
-  
+  <!-- verification of the succes of signing uo -->
+  <% if (success) { %>
+    <div class="alert alert-success" role="alert">
+      <p><strong class="alert-heading">Well done!</strong> you successfully signed up! wait till the admin confirm your regestration.</p>
+    </div>
+<% } %>
+
+
+
+
     <!-- Registration 5 - Bootstrap Brain Component -->
     <section class="vh-100 gradient-custom">
         <div class="container col-md-6 col-sm-8 col-lg-6 col-xl-5 h-100">

@@ -29,10 +29,13 @@ bookings.init({
     sequelize,
     modelName:'bookings'
 }
-)
 
+
+);
 
 bookings.belongsTo(hall,{foreignKey:'hall_Id'})
+
+
 bookings.belongsTo(User,{foreignKey:'userId'})
 
 module.exports=bookings;

@@ -4,11 +4,10 @@ const BookingResource = require('../models/Booking_resource'); // Import Booking
 const Booking = require('../models/Bookings'); // Import Booking model
 const Resource = require('../models/Resource'); // Import Resource model
 const Hall = require('../models/Hall'); // Import Hall model
-const router = express.Router();
 
 
 // Assuming this route handler is for rendering the EJS template
-router.get('/reporting', (req, res,next) => {
+const reporting=(req, res,next) => {
     try{
     // const bookingId = 1;
     // const resourceId = 1;
@@ -45,6 +44,6 @@ router.get('/reporting', (req, res,next) => {
         err.statusCode=error.status || 500 ;
         next(err) ;
     }
-});
+};
 
-module.exports=router
+module.exports=reporting

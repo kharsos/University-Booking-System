@@ -20,10 +20,10 @@ app.use(express.static('public'))
 app.use(express.static(path.join(__dirname, './uploads')));
 
 
-app.use('/',require('./routes/hall'));
-app.use('/',require('./routes/resource'));
-app.use('/',require('./routes/user'));
-app.use('/',require('./routes/reporting'));
+app.use('/',require('./routes/hallRoute'));
+app.use('/',require('./routes/resourceRoute'));
+app.use('/',require('./routes/userRoute'));
+app.use('/',require('./routes/reportingRoute'));
 
 app.use('/',auteRoute)
 

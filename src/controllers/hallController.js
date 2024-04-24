@@ -1,23 +1,11 @@
 const Hall=require('../models/Hall')
 const express = require('express');
-const path=require('path')
-const router = express.Router();
-const multer = require('multer');
+const path=require('path');
 
 
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, path.join(__dirname, '../uploads/'));
-  },
-  filename: function(req, file, cb) { // Changed cb to cb
-      cb(null, file.originalname);
-  }
-});
 
-const upload = multer({ storage });
-// Create a new hallconst 
-
-router.post('/CreateHall',upload.single('image_url'), async (req, res,next) => {
+// Create a new hall
+const CreateHall= async (req, res,next) => {
     try {
         const { name, location, capacity, description } = req.body;
         const imageUrl = req.file.filename;
@@ -41,10 +29,10 @@ router.post('/CreateHall',upload.single('image_url'), async (req, res,next) => {
       err.statusCode=error.status || 500 ;
       next(err) ;
     }
-});  
+};  
 
 /// POST request to update the hall details
-router.post('/UpdateHall/:id', upload.single('image_url'), async (req, res,next) => {
+const UpdateHall= async (req, res,next) => {
   try {
       const { name, location, capacity, description } = req.body;
       let imageUrl = req.file ? req.file.filename : undefined;
@@ -71,9 +59,10 @@ router.post('/UpdateHall/:id', upload.single('image_url'), async (req, res,next)
       err.statusCode=error.status || 500
       next(err)
   }
-});
+};
+
 // Delete a hall by ID
-router.get('/DeleteHall/:id', async (req, res,next) => {
+const DeleteHall= async (req, res,next) => {
     try {
       const hall = await Hall.findByPk(req.params.id);
       if (!hall) {
@@ -87,9 +76,9 @@ router.get('/DeleteHall/:id', async (req, res,next) => {
       err.statusCode=error.status || 500 ;
       next(err) ;
     }
-  });
+  };
 //the admin page rout
-router.get('/admin', async(req, res,next) =>{
+const admin=async(req, res,next) =>{
   try {
     const halls = await Hall.findAll();
     res.render('admin', { halls: halls });
@@ -99,6 +88,5 @@ router.get('/admin', async(req, res,next) =>{
     err.statusCode=error.status || 500 ;
     next(err) ;
   }
-  });
-
-module.exports = router
+  };
+module.exports={CreateHall,UpdateHall,DeleteHall,admin}

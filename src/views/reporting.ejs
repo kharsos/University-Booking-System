@@ -81,14 +81,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <% bookingResources.forEach(bookingResource => { %>
-                    <tr>
-                        <td><%= bookingResource.booking.hall.name %></td>
-                        <td><%= bookingResource.booking.startDate %></td>
-                        <td><%= bookingResource.booking.endDate %></td>
-                        <td><%= bookingResource.resource.name %></td>
-                    </tr>
-                    <% }) %>
+                        <% bookingResources.forEach(bookingResource => { %>
+                            <tr>
+                                <td><%= bookingResource.booking && bookingResource.booking.Hall && bookingResource.booking.Hall.name %></td>
+                                <td><%= bookingResource.booking && bookingResource.booking.startDate %></td>
+                                <td><%= bookingResource.booking && bookingResource.booking.endDate %></td>
+                                <td><%= bookingResource.resource && bookingResource.resource.name %></td>
+                            </tr>
+                        <% }) %>
+                        
                     </tbody>
                   </table>
             </main>

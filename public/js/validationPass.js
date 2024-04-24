@@ -5,7 +5,7 @@ document.getElementById('btn').addEventListener('submit',(event) =>{
 
 function submit(event){
             const password = document.getElementById('password').value;
-    const regexPassword = /^[A-Z a-z 0-9 @ - _ \.]{8,}$/;
+    const regexPassword = /^[A-Z a-z 0-9 @ - # ? ! @ $ % ^ & * -\.]{8,}$/;
     if (password=='') {
         event.preventDefault()
         document.getElementById('passerr').innerHTML="Password required !";

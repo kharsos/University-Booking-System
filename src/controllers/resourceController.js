@@ -1,10 +1,9 @@
 const { where } = require('sequelize');
 const resource=require('../models/Resource');
 const express = require('express');
-const router = express.Router();
 
 // Create a new Ressource
-router.post('/AddResource',async (req, res,next) => {
+const AddResource=async (req, res,next) => {
     try {
         const { name, description } = req.body;
         // Create a new Hall instance with the provided fields
@@ -16,11 +15,11 @@ router.post('/AddResource',async (req, res,next) => {
       err.statusCode=error.status || 500 ;
       next(err) ;
     }
-  });
+  };
     
 
 //    Edit Resource by ID
-  router.post('/EditResource/:id', async (req, res,next) => {
+  const EditResource= async (req, res,next) => {
       try {
         const { name, description } = req.body;
         resource.update({name,description},
@@ -34,10 +33,10 @@ router.post('/AddResource',async (req, res,next) => {
         err.statusCode=error.status || 500 ;
         next(err) ;
       }
-    });
+    };
 
-//   // Delete a hall by ID
-  router.get('/DeleteResource/:id', async (req, res,next) => {
+// Delete a hall by ID
+const DeleteResource= async (req, res,next) => {
       try {
         // const resource = await resource.findByPk(req.params.id);
         await resource.destroy({where:{id:req.params.id}});
@@ -48,9 +47,9 @@ router.post('/AddResource',async (req, res,next) => {
         err.statusCode=error.status || 500 ;
         next(err) ;
       }
-    });
+    };
     
-router.get('/resource', async(req, res,next) =>{
+const Resources= async(req, res,next) =>{
         try {
           const resources = await resource.findAll();
           res.render('resource', { resource: resources }); 
@@ -59,6 +58,6 @@ router.get('/resource', async(req, res,next) =>{
           err.statusCode=error.status || 500 ;
           next(err) ;
         }
-});
+};
 
-module.exports=router
+module.exports={AddResource,EditResource,DeleteResource,Resources}
