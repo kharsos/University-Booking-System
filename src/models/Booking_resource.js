@@ -1,26 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/Database');
-const Booking = require('./Bookings')
-const Resource = require('./Resources')
+const Booking = require('./Bookings'); // Import Booking model
+const Resource = require('./Resources'); // Import Resource model
+
 
 class BookingResource extends Model {}
 BookingResource.init({
     booking_id: {
-        type: DataTypes.INTEGER,
-        onDelete:'CASCADE'
+        type: DataTypes.INTEGER
     },
     resource_id: { 
-        type: DataTypes.INTEGER,
-        onDelete:'CASCADE'
+        type: DataTypes.INTEGER
     }
 }, {
     sequelize,
     modelName: 'booking_resource'
 });
 
-
+// Define associations
+BookingResource.belongsTo(Booking, { foreignKey: 'booking_id' });
 BookingResource.belongsTo(Resource, { foreignKey: 'resource_id' });
-BookingResource.belongsTo(Booking,{foreignKey:'booking_id'})
-Booking.hasMany(BookingResource, { foreignKey:'booking_id' });
+Booking.hasMany(BookingResource,{foreignKey:'booking_id'})
 
 module.exports = BookingResource;
