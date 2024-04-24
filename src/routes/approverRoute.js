@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router()
-const {verifyTokenAccess} =require('../middleware/authorization')
+const {verifyTokenAccess,authorize} =require('../middleware/authorization')
 
 const {
     dashbord,
@@ -12,20 +12,20 @@ const {
     booking_list
 } =require('../controllers/bookingController')
 
-router.get('/dashbord',verifyTokenAccess,dashbord)
+router.get('/dashbord',verifyTokenAccess,authorize(['approver']),dashbord)
 
 
-router.post('/dashbord/reject/:bookingid',verifyTokenAccess,rejected)
+router.post('/dashbord/reject/:bookingid',verifyTokenAccess,authorize(['approver']),rejected)
 
-router.post('/dashbord/approve/:bookingid',verifyTokenAccess,approve)
+router.post('/dashbord/approve/:bookingid',verifyTokenAccess,authorize(['approver']),approve)
 
-router.get('/approve/:bookingid',verifyTokenAccess,approved)
-router.post('/approve/:bookingid',verifyTokenAccess,approved)
+router.get('/approve/:bookingid',verifyTokenAccess,authorize(['approver']),approved)
+router.post('/approve/:bookingid',verifyTokenAccess,authorize(['approver']),approved)
 
-router.post("/reject/:bookingid",verifyTokenAccess,reason)
+router.post("/reject/:bookingid",verifyTokenAccess,authorize(['approver']),reason)
 
-router.get('/dashbord/history',verifyTokenAccess,booking_history)
+router.get('/dashbord/history',verifyTokenAccess,authorize(['approver']),booking_history)
 
-router.get('/dashbord/bookings',verifyTokenAccess,booking_list)
+router.get('/dashbord/bookings',verifyTokenAccess,authorize(['approver']),booking_list)
 
 module.exports=router
