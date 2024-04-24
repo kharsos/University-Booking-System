@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/Database');
 const Booking = require('./Bookings'); // Import Booking model
-const Resource = require('./Resources'); // Import Resource model
+const Resource = require('./Resource'); // Import Resource model
 
 
 class BookingResource extends Model {}

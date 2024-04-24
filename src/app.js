@@ -16,9 +16,16 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.json())
 
+const limiter = rateLimit({
+    windowMs: 60*3* 60 * 1000, // 3 hour
+    max: 100 // limit each IP to 2 requests per windowMs
+});
 
+app.use(request_logger,error_handling,limiter)
 
 app.set('views',path.join(__dirname,'./views'))
+
+
 
 app.set('view engine','ejs')
 
@@ -26,10 +33,11 @@ app.use(express.static('public'))
 app.use(express.static(path.join(__dirname, './uploads')));
 
 
-app.use('/',require('./routes/hall'));
-app.use('/',require('./routes/resource'));
-app.use('/',require('./routes/user'));
-app.use('/',require('./routes/reporting'));
+app.use('/',require('./routes/hallRoute'));
+app.use('/',require('./routes/resourceRoute'));
+app.use('/',require('./routes/userRoute'));
+app.use('/',require('./routes/reportingRoute'));
+
 app.use('/',auteRoute)
 app.use('/',approverRouter)
 
@@ -50,23 +58,7 @@ app.use('/',approverRouter)
 //     res.render('emailTemplate',{data:data})})
 
 
-const limiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 1 hour
-    max: 2 // limit each IP to 2 requests per windowMs
-});
-app.use(limiter);
 
-app.use(error_handling)
-
-app.all('*',(req,res,next)=>{
-    const err = new Error(`Can t find ${req.originalUrl} in the server !`)
-    err.status = 'fail'
-    err.statusCode = 404
-
-    next(err)
-})
-
-app.use(request_logger)
 
 
 module.exports=app;

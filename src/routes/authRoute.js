@@ -3,7 +3,8 @@ const User=require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router()
-router.post('/signup', async (req, res,next) => {
+
+router.post('/signup', async (req, res) => {
     try {
         // Extract email and password from request body
         let { email, password } = req.body;
@@ -18,26 +19,26 @@ router.post('/signup', async (req, res,next) => {
             // Generate a JWT token using jsonwebtoken
             const token = jwt.sign({ userId: newUser._id }, 'your_secret_key');
             // Send a success response with the message and the generated token
-            res.redirect('/login')
+            res.send({ message: "User created successfully", token });
 
         } else {
-            res.redirect('/login')
+            return res.status(400).json({ message: "Email already exists" });
         }
     } catch (error) {
-        let err = new Error(error.message)
-        err.statusCode = error.status || 500
-        next(err)
+        console.error(error);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
 
 const {
-    login,
+    login,signup
 }=require('../controllers/authController');
 
+router.post('/signup',signup)
 
 router.get('/signup', function(req, res) {
-    res.render('signup',{});
+    res.render('signup',{success:false});
 });
 
 router.get('/',(req,res)=>{
@@ -46,7 +47,7 @@ router.get('/',(req,res)=>{
 
 router.get('/login',(req,res)=>{
 
-    res.render('login',{err:{email:false,password:false}})
+    res.render('login',{err:{email:false,password:false,hide:false}})
 })
 
 

@@ -11,9 +11,14 @@
     </style>
 </head>
 <body>
-  
+    <% if(hide==true){ %>
+      <div class="alert alert-danger" id="hide">
+        your account is not yet confermed ! , please wait until it will be confirmed and activated !
+      </div>
+    <% } %>
     <!-- Registration 5 - Bootstrap Brain Component -->
     <section class="vh-100 gradient-custom">
+        
         <div class="container col-md-6 col-sm-8 col-lg-6 col-xl-5 h-100">
           <div class="row justify-content-center align-items-center h-100">
             <div class="">

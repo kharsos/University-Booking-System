@@ -31,10 +31,8 @@ bookings.init({
 }
 )
 
-bookings.belongsTo(hall,{foreignKey:'hall_Id'})
+
+bookings.belongsTo(hall,{foreignKey:'hall_id'})
 bookings.belongsTo(User,{foreignKey:'user_id'})
-
-
-
 
 module.exports=bookings;
