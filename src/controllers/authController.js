@@ -41,13 +41,13 @@ const login = async (req,res)=>{
         email:email
     }})
     if(!test){
-        res.render('login',{err:{email:true,password:false}})
+        res.render('login',{err:{email:true,password:false},hide:false})
     }
     else{
         bcrypt.compare(password,test.password)
         .then(result=>{
             if(!result){
-                res.render('login',{err:{email:false,password:true}})
+                res.render('login',{err:{email:false,password:true},hide:false})
             }
             else{
                 const payload = {id:test.id,role:test.role}

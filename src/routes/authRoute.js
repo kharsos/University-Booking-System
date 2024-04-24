@@ -47,7 +47,7 @@ router.get('/',(req,res)=>{
 
 router.get('/login',(req,res)=>{
 
-    res.render('login',{err:{email:false,password:false,hide:false}})
+    res.render('login',{err:{email:false,password:false},hide:false})
 })
 
 
