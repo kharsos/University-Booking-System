@@ -1,5 +1,5 @@
 const express = require('express');
-const BookingResource = require('../models/Booking_Resource'); 
+const BookingResource = require('../models/Booking_resource'); 
 const Booking = require('../models/Bookings'); // Import Booking model
 const Resource = require('../models/Resources'); // Import Resource model
 const Hall = require('../models/Hall'); // Import Hall model

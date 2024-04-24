@@ -6,10 +6,12 @@ const Resource = require('./Resources')
 class BookingResource extends Model {}
 BookingResource.init({
     booking_id: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        onDelete:'CASCADE'
     },
     resource_id: { 
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        onDelete:'CASCADE'
     }
 }, {
     sequelize,

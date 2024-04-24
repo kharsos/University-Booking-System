@@ -3,7 +3,7 @@ const approval = require('../models/Approval')
 const hall = require('../models/Hall')
 const user = require('../models/Users')
 const resource = require('../models/Resources')
-const Booking_Resource = require('../models/Booking_Resource')
+const Booking_Resource = require('../models/Booking_resource')
 const {Id} = require('../middleware/authorization')
 const emailSending=require('../utils/emailSender')
 
