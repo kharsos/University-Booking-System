@@ -5,8 +5,8 @@ const user = require('../models/Users')
 const resource = require('../models/Resources')
 const Booking_Resource = require('../models/Booking_Resource')
 const {Id} = require('../middleware/authorization')
-
 const emailSending=require('../utils/emailSender')
+
 
 const dashbord = async (req, res,next) => {
     try {
@@ -14,10 +14,10 @@ const dashbord = async (req, res,next) => {
         await booking.findAll({
             include: [
             {
-                model: resource,
-                through: {
                 model: Booking_Resource,
-                attributes: [] 
+                include:{
+                    model:resource,
+                    required:true
                 }
             },
             {
@@ -40,15 +40,14 @@ const dashbord = async (req, res,next) => {
                 err.status = 'Not Found'
                 next(err)
             }
-            else{
-                res.render('approver_dashbord', { data: data, userId: userId });
-            }
+            res.render('approver_dashbord', { data: data, userId: userId });
         })
     } catch (error) {
-      const err = new Error('Error in dashboard function:')
-      err.statusCode = 500
-      err.status = 'Error'
-      next(err)
+        console.log(error)
+        const err = new Error('Error in dashboard function:')
+        err.statusCode = 500
+        err.status = 'Error'
+        next(err)
     }
   };
 

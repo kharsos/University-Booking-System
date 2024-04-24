@@ -1,4 +1,3 @@
-
 const express = require('express');
 const User=require('../models/Users');
 const bcrypt = require('bcrypt');
@@ -15,11 +14,11 @@ router.post('/signup', async (req, res,next) => {
             // Hash the password using bcrypt
             const hashedPassword = await bcrypt.hash(password, 10);
             // Create a new user instance with the provided email and hashed password
-            const newUser = await User.create({ ...req.body, email: email, password: hashedPassword });
+            const newUser = await User.create({ ...req.body, email: email, password: hashedPassword,is_confirmed:false,is_activated:false });
             // Generate a JWT token using jsonwebtoken
             const token = jwt.sign({ userId: newUser._id }, 'your_secret_key');
             // Send a success response with the message and the generated token
-            res.send({ message: "User created successfully", token });
+            res.redirect('/login')
 
         } else {
             res.redirect('/login')
@@ -41,9 +40,6 @@ router.get('/signup', function(req, res) {
     res.render('signup',{});
 });
 
-router.get('/admin', function(req, res) {
-    res.render('admin',{});
-});
 router.get('/',(req,res)=>{
     res.render('index',{})
 })
@@ -55,6 +51,8 @@ router.get('/login',(req,res)=>{
 
 
 router.post('/login',login)
+
+
 
 
 

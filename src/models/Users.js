@@ -30,6 +30,9 @@ user.init({
     },
     is_confirmed:{
         type:DataTypes.BOOLEAN
+    },
+    is_activated:{
+        type:DataTypes.BOOLEAN
     }
 },{
     sequelize,

@@ -76,15 +76,15 @@
                             <tr>
                                 <td><%= booking.id %></td>
                                 <td><%= booking.user.username %></td>
-                                <td> <%= booking.Hall.name %></td>
+                                <td> <%= booking.hall.name %></td>
                                 <td><%= booking.expected_attendees %></td>
                                 <td><%= booking.purpose %></td>
                                 <td><%= booking.status %></td>
                                 <td>
                                     <select>
-                                        <%booking.Resources.map(resource=>{ %>
+                                        <%booking.booking_resources.map(b=>{ %>
                                         <option disabled selected>
-                                            <%= resource.name %>
+                                            <%= b.resource.name %>
                                         </option>
                                         <% }) %>
                                     </select>

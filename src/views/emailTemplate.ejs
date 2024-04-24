@@ -119,12 +119,12 @@
               <div class="wrapper-2">
                 <img src="https://archive.org/download/logo_20240418/logo.webp" style="width: 50%;" class="img-fluid" alt="fmpm">
                 <h2 class="my-5">Confirmation de réservation !</h2>
-                <p>Confirmation de réservation de la salle FMPM : Votre réservation pour <%= data.Hall.name %> est confirmée ! </p>
+                <p>Confirmation de réservation de la salle FMPM : Votre réservation pour <%= data.hall.name %> est confirmée ! </p>
                 <p>Cher/Chère <%= data.user.username %>,</p>
-                <p>Cet email confirme votre réservation de la salle <%= data.Hall.name %> pour votre événement le <%= data.start_date.toISOString().split('T')[0] %> de <%= data.start_date.getHours() %>H:<%= data.start_date.getMinutes() %>min:<%= data.start_date.getSeconds() %>s à <%= data.end_date.getHours() %>H:<%= data.end_date.getMinutes() %>min:<%= data.end_date.getSeconds() %>s .</p>
+                <p>Cet email confirme votre réservation de la salle <%= data.hall.name %> pour votre événement le <%= data.start_date.toISOString().split('T')[0] %> de <%= data.start_date.getHours() %>H:<%= data.start_date.getMinutes() %>min:<%= data.start_date.getSeconds() %>s à <%= data.end_date.getHours() %>H:<%= data.end_date.getMinutes() %>min:<%= data.end_date.getSeconds() %>s .</p>
                 <p>Détails de la réservation :</p>
-                <p>- <strong>Nom de la salle :</strong>  <%= data.Hall.name %></p>
-                <p>- <strong>Emplacement :</strong> <%= data.Hall.location %></p>
+                <p>- <strong>Nom de la salle :</strong>  <%= data.hall.name %></p>
+                <p>- <strong>Emplacement :</strong> <%= data.hall.location %></p>
                 <p>- <strong>_date :</strong> <%= data.start_date.toISOString().split('T')[0] %></p>
                 <p>- <strong>Heure :</strong> <%= data.start_date.getHours() %>H:<%= data.start_date.getMinutes() %>min:<%= data.start_date.getSeconds() %>s - <%= data.end_date.getHours() %>H:<%= data.end_date.getMinutes() %>min:<%= data.end_date.getSeconds() %>s</p>
                 <p>- <strong>Participants attendus :</strong> <%= data.expectedAttendees %></p>

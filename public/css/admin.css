@@ -171,7 +171,54 @@ a.sidebar-link:hover {
     height: 40px;
     width: 40px;
 }
-
-
-
 @media (min-width: 768px) {}
+/* menu for phone */
+
+/* Media query for smaller devices */
+@media (max-width: 767px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Initially hidden */
+      width: 250px;
+      height: 100%;
+      background-color: #fff;
+      z-index: 1000;
+      transition: left 0.3s ease;
+    }
+  
+}
+
+/* hall listing */
+.card {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+/* modal form */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.modal.fade.show .modal-dialog {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.add-hall-btn-container {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 20px;
+  }
+  
+.add-hall-btn {
+    /* Add your button styles here */
+  }
+.mx-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+

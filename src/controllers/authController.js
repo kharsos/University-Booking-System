@@ -33,7 +33,20 @@ const login = async (req,res,next)=>{
                         }
                         else{
                             localStorage.setItem('token',`Bearer ${token}`)
-                            res.redirect(`/dashbord`)
+                            if(test.is_confirmed==true&&test.is_activated==true){
+                                if(test.role=='approver'){
+                                    res.redirect(`/dashbord`)
+                                }
+                                else if(test.role=='student'||test.role=='staff'){
+                                    res.redirect('/')
+                                }
+                                else if(test.role=='admin'){
+                                    res.redirect('/admin')
+                                }
+                            }
+                            else{
+                                res.redirect('/')
+                            }
                             
                         }
                     })

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar With Bootstrap</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <img class="img-fluid" src="/images/logo.png" alt="">
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/admin" class="sidebar-link">
+                        <i class="lni lni-protection"></i>
+                        <span>Hall Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/resource" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Ressource Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/users" class="sidebar-link " >
+                        <i class="lni lni-user"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/reporting" class="sidebar-link  ">
+                        <i class="lni lni-layout"></i>
+                        <span>Reporting</span>
+                    </a>
+                    
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="/login" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="">
+               
+            </nav>
+            <main class="content px-3 py-4">
+                <div class="container-fluid">
+                    <div class="mb-3">
+                        
+                        <div class="add-hall-btn-container">
+                            <h3 class="fw-bold fs-4 mb-3 title">Resource management</h3>
+                            <button type="button" class="btn btn-primary add-hall-btn"data-bs-toggle="modal" data-bs-target="#addResourceModal">Add Resource</button>
+                        </div>     
+                        
+                        <!--ADD Modal -->
+                        <div class="modal fade" id="addResourceModal" tabindex="-1" aria-labelledby="addHallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="addHallModalLabel">Add Resource</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form method="post" action="/AddResource">
+                                    <div class="mb-3">
+                                    <label for="name" class="form-label">Resource Name</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                    <div class="mb-3">                                  
+                                    <label for="resourceDescription" class="form-label" >Resource Description</label>
+                                    <textarea class="form-control" id="resourceDescription" rows="3" name="description"></textarea>
+                                    </div> 
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Add resource</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+            <main>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">name</th>
+                        <th scope="col">description</th>
+                        <th scope="col">actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% resource.map((resource) => { %>
+                    <tr>
+                        <th scope="row"><%= resource.id %></th>
+                        <td><%= resource.name %></td>
+                        <td><%= resource.description %></td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                
+                                <form action="" class="mx-1 editIcon">
+                                <!-- Button trigger modal -->
+                                <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#EditModal<%= resource.id %>">
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                    </svg>
+                                    edit
+                                </button>
+                                </form>
+                                <form class="mx-1 deleteIcon" method="get" action="DeleteResource/<%= resource.id %>">
+                                    <button class="btn btn-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                    </svg>
+                                    delete</button>
+                                </form>
+                            </div>
+                        </td>
+                        <!--Update Modal -->
+                        <div class="modal fade" id="EditModal<%= resource.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Update Resource</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form method="post" action="/EditResource/<%= resource.id %>">
+                                    <div class="mb-3">
+                                    <label for="name" class="form-label">Resource name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="<%= resource.name %>">
+                                    </div>
+                                    <div class="mb-3">
+                                    <label for="cardDescription" class="form-label">Resource Description</label>
+                                    <textarea class="form-control" id="cardDescription" rows="3" name="description"><%= resource.description %></textarea>
+                                    <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="modal_btn">Save changes</button>
+                                </div>
+                                    </div>
+                                </form>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div>
+                        
+                      </div>
+                      </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+            </main>
+            
+
+  
+  
+            <footer class="footer">
+              
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="/js/sidebar.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 
 <body>
@@ -25,228 +25,185 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <!-- <i class="lni lni-user"></i> -->
-                        <img>
+                    <a href="/admin" class="sidebar-link">
+                        <i class="lni lni-protection"></i>
                         <span>Hall Management</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/resource" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
-                        <span>Task</span>
+                        <span>Ressource Management</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                        <i class="lni lni-protection"></i>
-                        <span>Auth</span>
+                    <a href="/users" class="sidebar-link " >
+                        <i class="lni lni-user"></i>
+                        <span>User Management</span>
                     </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                    <a href="/reporting" class="sidebar-link  ">
                         <i class="lni lni-layout"></i>
-                        <span>Multi Level</span>
+                        <span>Reporting</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-popup"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-cog"></i>
-                        <span>Setting</span>
-                    </a>
+                    
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="/login" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>
             </div>
         </aside>
         <div class="main">
-            <nav class="navbar navbar-expand px-4 py-3">
-                <form action="#" class="d-none d-sm-inline-block">
-
-                </form>
-                <div class="navbar-collapse collapse">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="/account.png" class="avatar img-fluid" alt="">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end rounded">
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <nav class="">
+               
             </nav>
             <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h3 class="fw-bold fs-4 mb-3">Admin Dashboard</h3>
-                        <div class="row">
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Memebers Progress
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
+                        
+                        <div class="add-hall-btn-container">
+                            <h3 class="fw-bold fs-4 mb-3 title">Hall Management</h3>
+                            <button type="button" class="btn btn-primary add-hall-btn"data-bs-toggle="modal" data-bs-target="#addHallModal">Add Hall</button>
+                        </div>     
+                        
+                        <!--ADD Modal -->
+                        <div class="modal fade" id="addHallModal" tabindex="-1" aria-labelledby="addHallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="addHallModalLabel">Add Hall</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form method="post" action="/CreateHall" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                    <label for="name" class="form-label">Hall Name</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                    <div class="mb-3">
+                                    <label for="location" class="form-label">Hall Location</label>
+                                    <input type="text" class="form-control" id="location" name="location">
+                                    </div>
+                                    <div class="mb-3">
+                                    <label for="capacity" class="form-label">Hall Capacity</label>
+                                    <input type="number" class="form-control" id="capacity" name="capacity">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>images url</label>
+                                        <div class="custom-file">
+                                          <input type="file" name="image_url"  class="custom-file-input form-control" id="image_url">
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                    <label for="hallDescription" class="form-label" >Hall Description</label>
+                                    <textarea class="form-control" id="hallDescription" rows="3" name="description"></textarea>
+                                    </div> 
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Add Hall</button>
+                                    </div>
+                                </form>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card  border-0">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Memebers Progress
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Memebers Progress
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <h3 class="fw-bold fs-4 my-3">Avg. Agent Earnings
-                        </h3>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="highlight">
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+  
+                        
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                            <% halls.forEach((hall) => { %>
+                              <div class="col">
+                                <div class="card h-100">
+                                  <img class="card-img-top" src="/<%= hall.image_url %>" alt="<%= hall.name %>">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><%= hall.name %></h5>
+                                    <p class="card-text"><%= hall.description %></p>
+                                <div class="d-flex flex-row justify-content-start">
+                                <form action="/DeleteHall/<%= hall.id %>" method="get" class="mx-1">
+                                    <button type="submit" class="btn btn-danger">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                      </svg>
+                                      Delete
+                                    </button>
+                                </form>
+                                <form class="mx-1">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#EditModal<%= hall.id %>">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                      </svg>
+                                      Edit
+                                    </button>
+                                </form>
                             </div>
-                        </div>
+                                  </div>
+                                </div>
+                              </div>               
+                            <!--Update Modal -->
+                            <div class="modal fade" id="EditModal<%= hall.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Update Hall</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <form method="post" action="/UpdateHall/<%= hall.id %>" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                        <label for="name" class="form-label">Hall name</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="<%= hall.name %>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="location" class="form-label">location</label>
+                                            <input type="text" class="form-control" id="location" name="location" value="<%= hall.location %>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="capacity" class="form-label">capacity</label>
+                                            <input type="number" class="form-control" id="capacity" name="capacity" value="<%= hall.capacity %>">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label>images url</label>
+                                            <div class="custom-file">
+                                              <input type="file" name="image_url"  class="custom-file-input form-control" id="image_url" value="<%= hall.image_url %>">
+                                            </div>
+                                          </div>
+                                        <div class="mb-3">
+                                        <label for="cardDescription" class="form-label">Card Description</label>
+                                        <textarea class="form-control" id="cardDescription" rows="3" name="description" ><%= hall.description %></textarea>
+                                        <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" id="modal_btn">Save changes</button>
+                                    </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                          </div>
+          
                     </div>
                 </div>
             </main>
+
+  
+  
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+              
             </footer>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <script src="/js/hamBurger.js"></script>
+    <script src="/js/sidebar.js"></script>
 </body>
-
 </html>

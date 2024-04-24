@@ -1,6 +1,5 @@
-const {Model , DataTypes}= require('sequelize');
+const {Model,DataTypes}= require('sequelize');
 const sequelize = require('../../config/Database');
-
 class Resource extends Model {}
 
 Resource.init({
@@ -12,8 +11,9 @@ Resource.init({
     }
 }, {
     sequelize,
-    modelName: 'Resources'
+    modelName: 'resources'
 });
 
 
-module.exports = Resource;
+
+module.exports=Resource
