@@ -34,7 +34,7 @@
         <h1 id="h1">Réservation de salle</h1>
           <form id="bookingForm" action="/bookings" method="POST">
             <div class="form-group">
-              <label for="hall">Hall:</label>
+              <label for="Hall">Hall:</label>
               <select name="hall_id" class="form-select w-50">
                 <option value=""  disabled>Choose a hall</option>
                 <% halls.forEach(hall => { %>
@@ -63,7 +63,7 @@
               <label for="resource_id">Resource:</label>
               <select name="resource_id" id="resource_id" class="form-select w-50 " multiple>
                 <option value="" disabled>choose a ressource</option>
-                <% ressource.forEach(resource => { %>
+                <% ressources.forEach(resource => { %>
                   <option value="<%= resource.id %>"><%= resource.name %></option>
                 <% }); %>
               </select>

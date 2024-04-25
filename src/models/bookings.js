@@ -1,7 +1,8 @@
 const {Model,DataTypes}=require('sequelize');
 const sequelize=require('../../config/Database');
 const User = require('./Users')
-const hall = require('./halls')
+const hall = require('./Hall')
+
 class bookings extends Model{}
 bookings.init({
     user_id:{
@@ -33,5 +34,4 @@ bookings.init({
 
 bookings.belongsTo(hall,{foreignKey:'hall_id'})
 bookings.belongsTo(User,{foreignKey:'user_id'})
-
 module.exports=bookings;

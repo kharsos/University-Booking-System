@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express()
 app.use(express.json())
-const Hall=require('../models/halls')
+const Hall=require('../models/Hall')
 const router = express.Router()
 
 app.get('/hall', (req, res) => {

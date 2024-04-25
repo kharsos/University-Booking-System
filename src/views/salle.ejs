@@ -47,7 +47,7 @@
                                 <p class="card-text"><%= hall.description %></p>
                                 
                                 
-                                <form action="/bookings">
+                                <form action="/bookings" >
                                     <button type="submit" class="btn btn-primary" >
                                         <% if (hall.capacity < hall.expected_attendees) { %>onclick="alert('Nombre de participants dépasse la capacité de la salle!');" style="background-color: red; color: white;"<% } %>
                                         Réserver

@@ -11,11 +11,11 @@ sequelize.sync()
 
 const auteRoute = require('./routes/authRoute')
 const approverRouter = require('./routes/approverRoute')
-const book=require('./routes/booking')
+const book=require('./routes/bookingRoute')
 const salle=require('./routes/hall')
 const booking = require('./models/Bookings')
 const User = require('./models/Users')
-const Hall = require('./models/halls')
+const Hall = require('./models/Hall')
 
 
 app.use(bodyParser.urlencoded({extended:true}))
@@ -35,7 +35,7 @@ app.use('/',require('./routes/authRoute'))
 
 app.use('/',require('./routes/hall'));
 // app.use('/',require('./routes/bookingHistory'))
-app.use('/',require('./routes/booking'))
+app.use('/',require('./routes/bookingRoute'))
 
 app.use('/',require('./routes/hall'))
 
