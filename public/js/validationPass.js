@@ -43,4 +43,4 @@ const hideDiv = () =>{
     document.querySelector('#hide').style.display="none"
 }
 
-setTimeout(hideDiv,3000)
+setTimeout(hideDiv,8000)

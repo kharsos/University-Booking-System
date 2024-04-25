@@ -72,8 +72,11 @@ const DeleteHall= async (req, res,next) => {
       // res.json({ message: 'Hall deleted successfully' });
       res.redirect('/admin')
     } catch (error) {
+      let err=new Error(error.message);
+      err.statusCode=error.status || 500 ;
       const halls = await Hall.findAll();
       res.render('admin', { halls: halls ,err:true});
+      next(err) ;
     }
   };
 //the admin page rout
