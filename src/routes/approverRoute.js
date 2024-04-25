@@ -10,7 +10,7 @@ const {
     approved,
     booking_history,
     booking_list
-} =require('../controllers/bookingController')
+} =require('../controllers/approverCotroller')
 
 router.get('/dashbord',verifyTokenAccess,authorize(['approver']),dashbord)
 
