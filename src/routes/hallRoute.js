@@ -2,7 +2,7 @@ const express = require('express');
 const path=require('path')
 const router = express.Router();
 const multer = require('multer');
-const {CreateHall,UpdateHall,DeleteHall,admin}=require('../controllers/hallController')
+const {CreateHall,UpdateHall,DeleteHall,admin,getHalls}=require('../controllers/hallController')
 const {verifyTokenAccess,authorize}=require('../middleware/authorization')
 
 const storage = multer.diskStorage({
@@ -20,6 +20,8 @@ router.post('/CreateHall',verifyTokenAccess,authorize(['admin','staff']),upload.
 router.post('/UpdateHall/:id',verifyTokenAccess,authorize(['admin','staff']),upload.single('image_url'),UpdateHall);
 router.get('/DeleteHall/:id',verifyTokenAccess,authorize(['admin','staff']),DeleteHall);
 router.get('/admin',verifyTokenAccess,authorize(['admin','staff']),admin);
+router.get('/salle',verifyTokenAccess,authorize(['student','staff']),getHalls);
+
 
 
 module.exports = router

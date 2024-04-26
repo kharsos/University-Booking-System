@@ -4,6 +4,15 @@ const path=require('path');
 
 
 
+const getHalls = async (req, res,next) =>{
+  try {
+    const halls = await Hall.findAll();
+    res.render('salle', { halls: halls }); 
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
 // Create a new hall
 const CreateHall= async (req, res,next) => {
     try {
@@ -91,4 +100,4 @@ const admin=async(req, res,next) =>{
     next(err) ;
   }
   };
-module.exports={CreateHall,UpdateHall,DeleteHall,admin}
+module.exports={CreateHall,UpdateHall,DeleteHall,admin,getHalls}

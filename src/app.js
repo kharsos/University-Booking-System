@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const limiter = require('./middleware/rateLimiter');
 const app = express()
-const book=require('./routes/bookingRoute')
-const salle=require('./routes/hall')
+const bookingRouter=require('./routes/bookingRoute')
 const auteRoute = require('./routes/authRoute');
 const approverRouter = require('./routes/approverRoute');
 const hallRoute = require('./routes/hallRoute');
@@ -61,7 +60,6 @@ app.use('/', userRoute);
 app.use('/', reportingRoute);
 app.use('/', auteRoute);
 app.use('/', approverRouter);
-app.use('/',salle)
-app.use('/',book)
+app.use('/',bookingRouter)
 module.exports = app;
 

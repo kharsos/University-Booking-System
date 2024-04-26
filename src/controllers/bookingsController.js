@@ -8,7 +8,7 @@ const Resource=require('../models/Resource');
 const { Id } = require('../middleware/authorization');
 
 // Action pour obtenir toutes les réservations
-const bookingHistory = async (req, res) => {
+const bookingHistory = async (req, res,next) => {
     try {
       const bookings = await Booking.findAll({
         include: [
@@ -40,7 +40,7 @@ const bookingHistory = async (req, res) => {
   
 
 // Action pour créer une réservation
-const createBooking = async (req, res) => {
+const createBooking = async (req, res,next) => {
     try {
       const halls=await Halls.findAll();
       const ressources= await Resource.findAll()
@@ -120,7 +120,7 @@ const createBooking = async (req, res) => {
     }
   };
 
-  const getBookings= async(req, res) =>{
+  const getBookings= async(req, res,next) =>{
           const ressources= await Resource.findAll()
           const halls= await Halls.findAll()
         try {
