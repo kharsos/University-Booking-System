@@ -42,10 +42,11 @@ const bookingHistory = async (req, res) => {
 // Action pour créer une réservation
 const createBooking = async (req, res) => {
     try {
-      const halls=Halls.findAll();
-      let { hall_id, start_date, end_date, expected_attendees, purpose, resource_id } = req.body;
+      const halls=await Halls.findAll();
+      const ressources= await Resource.findAll()
+      let { hall_id, start_date, end_date, expected_attendees, purpose, resource_ids } = req.body;
       let user_id = Id;
-  
+      
       const existingBooking = await Booking.findOne({
         where: {
           hall_id: hall_id,
@@ -73,19 +74,21 @@ const createBooking = async (req, res) => {
       });
   
       if (existingBooking) {
-        res.status(400).render('bookings', { err: true,halls:halls, users: user_id, erreur: false, success: false });
+        res.status(400).render('bookings', { err: true,halls:halls, users: user_id, erreur: false, success: false , ressources:ressources});
         return;
       }
   
       const hall = await Halls.findByPk(hall_id);
       if (hall.capacity < expected_attendees) {
-        res.status(400).render('bookings', { err: false,halls:halls, users: user_id, erreur: true, success: false });
+        res.status(400).render('bookings', { err: false,halls:halls, users: user_id, erreur: true, success: false ,ressources:ressources });
         return ;
       }
   
-      const newBooking = await Booking.create({ ...req.body, hall_id: parseInt(hall_id), user_id, resource_id: parseInt(resource_id) });
+      const newBooking = await Booking.create({ ...req.body, hall_id: parseInt(hall_id), user_id, status : 'pending' });
   
-      await bookingResources.create({ booking_id: newBooking.id, resource_id: parseInt(resource_id) });
+      await resource_ids.map(async(id)=>{
+        await bookingResources.create({ booking_id: newBooking.id, resource_id: parseInt(id) });
+      })
   
       const AllBooking = await Booking.findAll({
         include: [

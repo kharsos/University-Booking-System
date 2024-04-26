@@ -77,8 +77,8 @@
                                     <td><%= booking.user.username %></td>
                                     <td><%= booking.hall.name %></td>
                                     <td><%= booking.status %></td>
-                                    <td><%= booking.start_date.toISOString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %></td>
-                                    <td><%= booking.end_date %></td>
+                                    <td><%= booking.start_date.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' , hour: 'numeric', minute: 'numeric', hour12: false }) %></td>
+                                    <td><%= booking.end_date.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' , hour: 'numeric', minute: 'numeric', hour12: false }) %></td>
                                 </tr>
                             <% }); %>
                         </tbody>
