@@ -38,5 +38,9 @@ document.getElementById('form').addEventListener('submit', function(e) {
       document.querySelector('#validateEmail').classList.add('validate');
     }
 })
- 
+const hideDiv = () =>{
+  document.querySelector('.alert').style.display="none"
+} 
+
+setTimeout(hideDiv,5000)
 

@@ -17,7 +17,7 @@ section{
   color: white;
   font-size: bold;
 }
-#Username,#emailAddress,#password,#confirmPassword,#EducationLevel,#CNE,#PPT,#Service,#firstname,#lastname,.select {
+#Username,#emailAddress,#password,#confirmPassword,#EducationLevel,#CNE,#PPT,#Service,#first_name,#last_name,.select {
   background-color: #213b4f;
   color: white;
 }
@@ -45,10 +45,10 @@ section{
 #Service::placeholder {
     color: lightgray;
   }
-#firstname::placeholder {
+#first_name::placeholder {
     color: lightgray;
   }
-#lastname::placeholder {
+#last_name::placeholder {
     color: lightgray;
   }
 label{

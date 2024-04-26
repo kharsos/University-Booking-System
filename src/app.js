@@ -8,6 +8,9 @@ const approverRouter = require('./routes/approverRoute')
 const booking = require('./models/Bookings')
 const User = require('./models/Users')
 const Hall = require('./models/Hall')
+const {verifyTokenAccess} =require('./middleware/authorization')
+const {imageRout}=require('./controllers/imageController')
+
 app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.json())
@@ -17,8 +20,8 @@ app.set('views',path.join(__dirname,'./views'))
 app.set('view engine','ejs')
 
 app.use(express.static('public'))
-app.use(express.static(path.join(__dirname, './uploads')));
-
+// app.use(express.static(path.join(__dirname, './uploads')));
+// app.use('/images/:imageName', verifyTokenAccess,imageRout);
 
 app.use('/',require('./routes/hallRoute'));
 app.use('/',require('./routes/resourceRoute'));

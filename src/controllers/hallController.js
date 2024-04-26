@@ -17,7 +17,7 @@ const CreateHall= async (req, res,next) => {
                 description,
                 image_url: imageUrl // Save the original filename in the database
             }).then(() => {
-                res.redirect('/admin');
+                res.redirect('/Hall');
                 // res.send(req.file)
             }).catch((err) => {
                 console.error('Error creating hall:', err);
@@ -53,7 +53,7 @@ const UpdateHall= async (req, res,next) => {
       // Save the updated hall
       await hall.save();
       
-      res.redirect('/admin');
+      res.redirect('/Hall');
   } catch (error) {
       let err=new Error(error.message);
       err.statusCode=error.status || 500
@@ -70,7 +70,7 @@ const DeleteHall= async (req, res,next) => {
       }
       await hall.destroy();
       // res.json({ message: 'Hall deleted successfully' });
-      res.redirect('/admin')
+      res.redirect('/Hall')
     } catch (error) {
       let err=new Error(error.message);
       err.statusCode=error.status || 500 ;

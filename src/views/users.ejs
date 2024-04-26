@@ -25,7 +25,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="/admin" class="sidebar-link">
+                    <a href="/Hall" class="sidebar-link">
                         <i class="lni lni-protection"></i>
                         <span>Hall Management</span>
                     </a>
@@ -157,7 +157,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                <form method="post" action="/Edituser/<%= user.id %>">
+                                <form method="post" action="/user/<%= user.id %>">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">username</label>
                                         <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>">
