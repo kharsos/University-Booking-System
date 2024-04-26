@@ -3,7 +3,7 @@ const Booking=require('../models/Bookings');
 const User=require('../models/Users');
 const Halls = require('../models/Hall');
 const {Op}=require('sequelize')
-const bookingResources=require('../models/booking_resource')
+const bookingResources=require('../models/Booking_resource')
 const Resource=require('../models/Resource');
 const { Id } = require('../middleware/authorization');
 
@@ -42,6 +42,7 @@ const bookingHistory = async (req, res) => {
 // Action pour créer une réservation
 const createBooking = async (req, res) => {
     try {
+      const halls=Halls.findAll();
       let { hall_id, start_date, end_date, expected_attendees, purpose, resource_id } = req.body;
       let user_id = Id;
   
@@ -72,13 +73,13 @@ const createBooking = async (req, res) => {
       });
   
       if (existingBooking) {
-        res.status(400).render('bookings', { err: true, users: user_id, erreur: false, success: false });
+        res.status(400).render('bookings', { err: true,halls:halls, users: user_id, erreur: false, success: false });
         return;
       }
   
       const hall = await Halls.findByPk(hall_id);
       if (hall.capacity < expected_attendees) {
-        res.status(400).render('bookings', { err: false, users: user_id, erreur: true, success: false });
+        res.status(400).render('bookings', { err: false,halls:halls, users: user_id, erreur: true, success: false });
         return ;
       }
   

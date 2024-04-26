@@ -1,71 +1,67 @@
-const express =require('express')
-const sequelize=require('../config/Database');
-const path = require('path')
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const limiter = require('./middleware/rateLimiter');
 const app = express()
-const bodyParser =require('body-parser')
-
-
-sequelize.sync()
-.then(()=>console.log('db is ready'))
-
-
-const auteRoute = require('./routes/authRoute')
-const approverRouter = require('./routes/approverRoute')
 const book=require('./routes/bookingRoute')
 const salle=require('./routes/hall')
-const booking = require('./models/Bookings')
-const User = require('./models/Users')
-const Hall = require('./models/Hall')
+const auteRoute = require('./routes/authRoute');
+const approverRouter = require('./routes/approverRoute');
+const hallRoute = require('./routes/hallRoute');
+const resourceRoute = require('./routes/resourceRoute');
+const userRoute = require('./routes/userRoute');
+const reportingRoute = require('./routes/reportingRoute');
+
+
+const { request_logger } = require('./middleware/logs');
+const  error_handling  = require('./middleware/error_handling');
 
 
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.use(express.json())
 
-app.set('views',path.join(__dirname,'./views'))
 
-app.set('view engine','ejs')
 
-app.use(express.static('public'))
+
+// Apply middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 app.use(express.urlencoded({ extended: false }));
 
 
-app.use('/',require('./routes/authRoute'))
 
-app.use('/',require('./routes/hall'));
-// app.use('/',require('./routes/bookingHistory'))
-app.use('/',require('./routes/bookingRoute'))
 
-app.use('/',require('./routes/hall'))
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
 
-// app.use('/',require('./routes/bookingResource'))
+app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, './uploads')));
 
-// app.get('/salle',(req,res)=>{
-  
-//     res.render('salle',{});
-//     res.redirect('/bookings')
-//   })
 
+// Apply logging and error handling middleware
+app.use(request_logger);
+app.use(error_handling);
+
+// Apply rate limiter middleware
+
+app.use(limiter);
+
+// Log IP address for each request
+app.use((req, res, next) => {
+    console.log(`Request per IP: ${req.ip}`);
+    next();
+});
+
+// Apply routes
+app.use('/', hallRoute);
+app.use('/', resourceRoute);
+app.use('/', userRoute);
+app.use('/', reportingRoute);
+app.use('/', auteRoute);
+app.use('/', approverRouter);
 app.use('/',salle)
-app.use('/',auteRoute)
 app.use('/',book)
-app.use('/',approverRouter)
+module.exports = app;
 
-app.get('/email',async(req,res)=>{
-    const data = await booking.findOne({include:[
-        {
-            model:User,
-            required:true
-        },
-        {
-            model:Hall,
-            required:true
-        }
-    ],where:{
-        id:4
-    }})
-    // res.send(data)})
-    res.render('emailTemplate',{data:data})})
-
-module.exports=app;

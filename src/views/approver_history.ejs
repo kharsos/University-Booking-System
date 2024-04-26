@@ -22,6 +22,9 @@
                 <button class="toggle-btn" type="button">
                     <i class="lni lni-grid-alt"></i>
                 </button>
+                <div class="sidebar-logo">
+                    <img class="img-fluid" src="/images/logo.png" alt="">
+                </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
@@ -52,9 +55,7 @@
         </aside>
         <div class="main">
             <nav class="navbar navbar-expand px-4 py-3">
-                <div class="sidebar-logo">
-                    <a href="#"><img class="img-fluid" style="width:30%;" src="/img/logo.png"></a>
-                </div>
+                <h3 class="fw-bold fs-4 mb-3 title">Approver Dashboard</h3>
             </nav>
             <main class="content px-3 py-4 col-lg-12 col-md-12 col-sm-12 mx-auto">
                 <div class="table-responsive">
@@ -74,10 +75,10 @@
                                 <tr>
                                     <td><%= booking.id %></td>
                                     <td><%= booking.user.username %></td>
-                                    <td><%= booking.Hall.name %></td>
+                                    <td><%= booking.hall.name %></td>
                                     <td><%= booking.status %></td>
-                                    <td><%= booking.startDate.getHours() %>:<%= booking.startDate.getMinutes() %>:<%= booking.startDate.getSeconds() %></td>
-                                    <td><%= booking.endDate.getHours() %>:<%= booking.endDate.getMinutes() %>:<%= booking.endDate.getSeconds() %></td>
+                                    <td><%= booking.start_date.toISOString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %></td>
+                                    <td><%= booking.end_date %></td>
                                 </tr>
                             <% }); %>
                         </tbody>

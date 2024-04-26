@@ -119,19 +119,19 @@
               <div class="wrapper-2">
                 <img src="https://archive.org/download/logo_20240418/logo.webp" style="width: 50%;" class="img-fluid" alt="fmpm">
                 <h2 class="my-5">Confirmation de réservation !</h2>
-                <p>Confirmation de réservation de la salle FMPM : Votre réservation pour <%= data.Hall.name %> est confirmée ! </p>
+                <p>Confirmation de réservation de la salle FMPM : Votre réservation pour <%= data.hall.name %> est confirmée ! </p>
                 <p>Cher/Chère <%= data.user.username %>,</p>
-                <p>Cet email confirme votre réservation de la salle <%= data.Hall.name %> pour votre événement le <%= data.startDate.toISOString().split('T')[0] %> de <%= data.startDate.getHours() %>H:<%= data.startDate.getMinutes() %>min:<%= data.startDate.getSeconds() %>s à <%= data.endDate.getHours() %>H:<%= data.endDate.getMinutes() %>min:<%= data.endDate.getSeconds() %>s .</p>
+                <p>Cet email confirme votre réservation de la salle <%= data.hall.name %> pour votre événement le <%= data.start_date.toISOString().split('T')[0] %> de <%= data.start_date.getHours() %>H:<%= data.start_date.getMinutes() %>min:<%= data.start_date.getSeconds() %>s à <%= data.end_date.getHours() %>H:<%= data.end_date.getMinutes() %>min:<%= data.end_date.getSeconds() %>s .</p>
                 <p>Détails de la réservation :</p>
-                <p>- <strong>Nom de la salle :</strong>  <%= data.Hall.name %></p>
-                <p>- <strong>Emplacement :</strong> <%= data.Hall.location %></p>
-                <p>- <strong>Date :</strong> <%= data.startDate.toISOString().split('T')[0] %></p>
-                <p>- <strong>Heure :</strong> <%= data.startDate.getHours() %>H:<%= data.startDate.getMinutes() %>min:<%= data.startDate.getSeconds() %>s - <%= data.endDate.getHours() %>H:<%= data.endDate.getMinutes() %>min:<%= data.endDate.getSeconds() %>s</p>
+                <p>- <strong>Nom de la salle :</strong>  <%= data.hall.name %></p>
+                <p>- <strong>Emplacement :</strong> <%= data.hall.location %></p>
+                <p>- <strong>_date :</strong> <%= data.start_date.toISOString().split('T')[0] %></p>
+                <p>- <strong>Heure :</strong> <%= data.start_date.getHours() %>H:<%= data.start_date.getMinutes() %>min:<%= data.start_date.getSeconds() %>s - <%= data.end_date.getHours() %>H:<%= data.end_date.getMinutes() %>min:<%= data.end_date.getSeconds() %>s</p>
                 <p>- <strong>Participants attendus :</strong> <%= data.expectedAttendees %></p>
                 <p>- <strong>Objectif :</strong> <%= data.purpose %></p>
                 <p>Nous espérons que cette réservation répond à vos besoins. Si vous avez besoin de ressources supplémentaires pour votre événement, veuillez visiter notre page de ressources:[Lien vers la page des ressources]</p>
                 <p>Politique d'annulation :</p>
-                <p>Vous pouvez annuler votre réservation jusqu'à <%= Math.floor((data.startDate - new Date()) / (1000 * 60 * 60 * 24)) %> jours avant la date de l'événement en suivant ces étapes : [Lien vers les instructions d'annulation]</p>
+                <p>Vous pouvez annuler votre réservation jusqu'à <%= Math.floor((data.start_date - new Date()) / (1000 * 60 * 60 * 24)) %> jours avant la date de l'événement en suivant ces étapes : [Lien vers les instructions d'annulation]</p>
                 <p>Si vous avez des questions ou avez besoin d'une assistance supplémentaire, n'hésitez pas à contacter notre équipe de support à l'adresse [Adresse e-mail] ou au [Numéro de téléphone].</p>
                 <h5>Merci d'avoir choisi le Système de Réservation des Salles FMPM !</h5>
                 <h4>Cordialement,</h4>
