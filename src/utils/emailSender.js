@@ -8,7 +8,7 @@ const emailSending = async (booking) =>{
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'ham118849@gmail.com',
+      user: process.env.YOUREMAIL,
       pass:process.env.EMAILPASS
     }
   });
