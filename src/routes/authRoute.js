@@ -3,7 +3,6 @@ const User=require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router()
-
 const {
     login,signup
 }=require('../controllers/authController');
@@ -20,7 +19,9 @@ router.get('/',(req,res)=>{
 
 router.get('/login',(req,res)=>{
 
-    res.render('login',{err:{email:false,password:false}})
+
+    res.render('login',{err:{email:false,password:false},hide:false})
+
 })
 
 

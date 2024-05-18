@@ -27,7 +27,22 @@ const decoded =jwt.decode(authToken)
 const Id = decoded.id
 
 
+function authorize(role) {
+    return (req, res, next) => {
+        let token = localStorage.getItem('token')
+        const BearerToken = token.split(' ')
+        const authToken = BearerToken[1]
+        const decoded =jwt.decode(authToken)
+        const UserRole = decoded.role
+        if (!role.includes(UserRole)) {
+            res.redirect('/')
+        }
+        next();
+        };
+  }
+
 module.exports ={
     verifyTokenAccess,
-    Id
+    Id,
+    authorize
 }

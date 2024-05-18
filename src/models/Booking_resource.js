@@ -3,6 +3,7 @@ const sequelize = require('../../config/Database');
 const Booking = require('./Bookings'); // Import Booking model
 const Resource = require('./Resource'); // Import Resource model
 
+
 class BookingResource extends Model {}
 BookingResource.init({
     booking_id: {
@@ -19,5 +20,6 @@ BookingResource.init({
 // Define associations
 BookingResource.belongsTo(Booking, { foreignKey: 'booking_id' });
 BookingResource.belongsTo(Resource, { foreignKey: 'resource_id' });
+Booking.hasMany(BookingResource,{foreignKey:'booking_id'})
 
 module.exports = BookingResource;

@@ -80,28 +80,28 @@ const deactivate= async (req, res,next) => {
   }
 };
 
-const users= async(req, res,next) =>{
-        try {
-          const users = await user.findAll();
-          const data = users.map(user => ({
-            id: user.id,
-            email: user.email,
-            username: user.username,
-            first_name: user.firstname,
-            last_name: user.lastname,
-            national_number:JSON.parse(user.national_number),
-            role: user.role,
-            field:JSON.parse(user.field),
-            password: user.password,
-            is_confirmed: user.is_confirmed,
-            is_activated: user.is_activated
-        }));
-          res.render('users', { user: data }); 
-        } catch (error) {
-          let err=new Error(error.message);
-          err.statusCode=error.status || 500 ;
-          next(err) ;
-        }
+const users = async (req, res, next) => {
+  try {
+      const users = await user.findAll();
+      const data = users.map(user => ({
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          national_number: JSON.parse(user.national_number),
+          role: user.role,
+          field: JSON.parse(user.field),
+          password: user.password,
+          is_confirmed: user.is_confirmed,
+          is_activated: user.is_activated
+      }));
+      res.render('users', { user: data });
+  } catch (error) {
+      let err = new Error(error.message);
+      err.statusCode = error.status || 500;
+      next(err);
+  }
 };
 
 module.exports={Edituser,confirm,deny,activate,deactivate,users}

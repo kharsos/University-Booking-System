@@ -23,4 +23,4 @@ const reporting=async(req, res,next) => {
     }
 };
 
-module.exports=reporting
+module.exports=reporting;

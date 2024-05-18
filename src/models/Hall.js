@@ -16,11 +16,12 @@ hall.init({
     },
     image_url:{
         type:DataTypes.STRING
-    }
+    },
+
 },{
     sequelize,
-    modelName:'Hall'
+    modelName:'hall'
 }
-)
+);
 
 module.exports=hall;

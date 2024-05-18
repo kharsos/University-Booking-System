@@ -41,13 +41,13 @@ const login = async (req,res)=>{
         email:email
     }})
     if(!test){
-        res.render('login',{err:{email:true,password:false}})
+        res.render('login',{err:{email:true,password:false},hide:false})
     }
     else{
         bcrypt.compare(password,test.password)
         .then(result=>{
             if(!result){
-                res.render('login',{err:{email:false,password:true}})
+                res.render('login',{err:{email:false,password:true},hide:false})
             }
             else{
                 const payload = {id:test.id,role:test.role}
@@ -57,8 +57,20 @@ const login = async (req,res)=>{
                     }
                     else{
                         localStorage.setItem('token',`Bearer ${token}`)
-                        res.redirect(`/dashbord`)
-                        
+                        if(test.is_confirmed==true&&test.is_activated==true){
+                            if(test.role=='student'){
+                                res.redirect('/salle')
+                            }
+                            else if(test.role=='admin'||test.role=='staff'){
+                                res.redirect('/Hall')
+                            }
+                            else if(test.role=='approver'){
+                                res.redirect(`/dashbord`)
+                            }
+                        }
+                        else{
+                            res.render('login',{err:{email:false,password:false},hide:true})
+                        }
                     }
                 })
             }

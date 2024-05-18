@@ -8,11 +8,11 @@ const emailSending = async (booking) =>{
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'ham118849@gmail.com',
+      user: process.env.YOUREMAIL,
       pass:process.env.EMAILPASS
     }
   });
-  const templateFilePath = path.join(__dirname, '../src/views/emailTemplate.ejs');
+  const templateFilePath = path.join(__dirname, '../views/emailTemplate.ejs');
   const templateFile = fs.readFileSync(templateFilePath, 'utf8');
   const data = booking
 
@@ -26,7 +26,7 @@ const inlinedEmail = juice(renderedEmail);
     const mailOptions = {
         to: 'universitycadiayad@gmail.com',
         from: 'ham118849@gmail.com',
-        subject:`FMPM Hall Booking Confirmation: Your Booking for ${data.Hall.name} is Confirmed`,
+        subject:`FMPM Hall Booking Confirmation: Your Booking for ${data.hall.name} is Confirmed`,
         html:inlinedEmail
 };
 

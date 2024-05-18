@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+}
+#h1{
+    text-align: center;
+    margin-top: 15px;
+    color: #72ACD8;
+    font-weight: bold;
+}
+#bookingForm{
+    margin-left: 30%;
+}
+.btn{
+    margin-top: 4%;
+}
+#error-alert{
+    
+    margin-left: 25%;
+}
